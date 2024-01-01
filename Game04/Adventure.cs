@@ -38,18 +38,52 @@ namespace Game04
             get => _player;
         } // Player
 
-        public string MovePlayerTo(Rm newpos)
+        private void MoveActorTo(Actor anActor, Room aRoom)
+        {
+            anActor.Location = aRoom;
+        }
+
+        private Rm MoveTo(Actor anActor, Dir direction)
+        {
+            Room r = anActor.Location;
+            Rm exit;
+
+            switch (direction)
+            {
+                case Dir.NORTH:
+                    exit = r.N;
+                    break;
+                case Dir.SOUTH:
+                    exit = r.S;
+                    break;
+                case Dir.EAST:
+                    exit = r.E;
+                    break;
+                case Dir.WEST:
+                    exit = r.W;
+                    break;
+                default:
+                    exit = Rm.NOEXIT;
+                    break;
+            }
+            if (exit != Rm.NOEXIT)
+            {
+                MoveActorTo(anActor, _map.RoomAt(exit));
+            }
+            return exit;
+        }
+
+        public string MovePlayerTo(Dir direction)
         {
             string s = "";
 
-            if (newpos == Rm.NOEXIT)
+            if (MoveTo(_player, direction) == Rm.NOEXIT)
             {
-                s = "There is no exit in that direction\r\n";
+                s = $"There is no exit in that direction\r\n You are still in {_player.Location.Name}\r\n Exits: {getExits(_player.Location)}";
             }
             else
             {
-                _player.Location = _map.RoomAt(newpos);
-                s = $"You are now in the {_player.Location.Name}\r\n Exits: {getExits(_player.Location)}";
+               s = $"You are now in the {_player.Location.Name}\r\n Exits: {getExits(_player.Location)}";
             }
             return s;
         }

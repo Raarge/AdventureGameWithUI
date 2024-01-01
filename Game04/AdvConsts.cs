@@ -14,4 +14,12 @@ namespace Game04
         Dungeon,
         NOEXIT
     }
+
+    public enum Dir
+    {
+        NORTH,
+        SOUTH,
+        WEST,
+        EAST
+    }
 }

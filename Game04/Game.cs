@@ -46,37 +46,31 @@ namespace Game04
             outputTB.AppendText($"Exits: {getExits(adv.Player.Location)}");
         }
 
-        private void MovePlayer(Rm newpos)
+        private void MovePlayer(Dir direction)
         {
-            if (newpos == Rm.NOEXIT)
-            {
-                outputTB.Text = "There is no exit in that direction\r\n";
-            }
-            else
-            {
-                roomnameTB.Text = adv.Player.Location.Name;
-                outputTB.Text = adv.MovePlayerTo(newpos);
-            }
+            //roomnameTB.Text = adv.Player.Location.Name;
+            outputTB.Text = adv.MovePlayerTo(direction);
+            
         }
 
         private void northBtn_Click(object sender, EventArgs e)
         {
-            MovePlayer(adv.Player.Location.N);
+            MovePlayer(Dir.NORTH);
         }
 
         private void westBtn_Click(object sender, EventArgs e)
         {
-            MovePlayer(adv.Player.Location.W);
+            MovePlayer(Dir.WEST);
         }
 
         private void eastBtn_Click(object sender, EventArgs e)
         {
-            MovePlayer(adv.Player.Location.E);
+            MovePlayer(Dir.EAST);
         }
 
         private void southBtn_Click(object sender, EventArgs e)
         {
-            MovePlayer(adv.Player.Location.S);
+            MovePlayer(Dir.SOUTH);
         }
 
         public string getExits(Room room)
