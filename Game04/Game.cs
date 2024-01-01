@@ -14,20 +14,7 @@ namespace Game04
 {
     public partial class Game : Form
     {
-        /*
-         *  Troll Room -- Forest
-         *       |
-         *    Cave ------ Dungeon
-         */
-
-        Room room0;
-        Room room1;
-        Room room2;
-        Room room3;
-
-        private RoomList _map;
-
-        private Actor _player;
+        Adventure adv;
 
         public Game()
         {
@@ -38,37 +25,25 @@ namespace Game04
 
         private void InitGame()
         {
-            room0 = new Room("Troll Room", "a dank, dark room that smells of troll", Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, Rm.Forest);
-            room1 = new Room("Forest", "a light, airy forest shimmering with sunlight", Rm.NOEXIT, Rm.NOEXIT, Rm.TrollRoom, Rm.NOEXIT);
-            room2 = new Room("Cave", "a vast cave with walls covered by luminous moss", Rm.TrollRoom, Rm.NOEXIT, Rm.NOEXIT, Rm.Dungeon);
-            room3 = new Room("Dungeon", "a gloomy dungeon. Rats scurry across its floor", Rm.NOEXIT, Rm.NOEXIT, Rm.Cave, Rm.NOEXIT);
-
-            _map = new RoomList();
-
-            _map.Add(Rm.TrollRoom, room0);
-            _map.Add(Rm.Forest, room1);
-            _map.Add(Rm.Cave, room2);
-            _map.Add(Rm.Dungeon, room3);
-
-            _player = new Actor("You", "The Player", room0);            
+            adv = new Adventure();        
         }
 
         private void StartGame()
         {
-            roomnameTB.Text = _player.Location.Name;
+            roomnameTB.Text = adv.Player.Location.Name;
             outputTB.Text = $"Welcome to the Great Adventure!\r\n";
-            outputTB.AppendText($"You are in the {_player.Location.Name}.");
-            outputTB.AppendText($"It is {_player.Location.Description}\r\n");
-            outputTB.AppendText($"Exits: {getExits(_player.Location)}\r\n");
+            outputTB.AppendText($"You are in the {adv.Player.Location.Name}.");
+            outputTB.AppendText($"It is {adv.Player.Location.Description}\r\n");
+            outputTB.AppendText($"Exits: {getExits(adv.Player.Location)}\r\n");
             outputTB.AppendText("Where do you want to go now?\r\n");
             outputTB.AppendText("Click a direction button: North, South, West or East.\r\n");
         }
 
         private void lookBtn_Click(object sender, EventArgs e)
         {
-            outputTB.Text = $"You are in the {_player.Location.Name}.\r\n";
-            outputTB.AppendText($"It is {_player.Location.Description}\r\n");
-            outputTB.AppendText($"Exits: {getExits(_player.Location)}");
+            outputTB.Text = $"You are in the {adv.Player.Location.Name}.\r\n";
+            outputTB.AppendText($"It is {adv.Player.Location.Description}\r\n");
+            outputTB.AppendText($"Exits: {getExits(adv.Player.Location)}");
         }
 
         private void MovePlayer(Rm newpos)
@@ -79,34 +54,32 @@ namespace Game04
             }
             else
             {
-                _player.Location = _map.RoomAt(newpos);
-                roomnameTB.Text = _player.Location.Name;
-                outputTB.Text = $"You are now in the {_player.Location.Name}\r\n";
-                outputTB.AppendText($"Exits: {getExits(_player.Location)}");
+                roomnameTB.Text = adv.Player.Location.Name;
+                outputTB.Text = adv.MovePlayerTo(newpos);
             }
         }
 
         private void northBtn_Click(object sender, EventArgs e)
         {
-            MovePlayer(_player.Location.N);
+            MovePlayer(adv.Player.Location.N);
         }
 
         private void westBtn_Click(object sender, EventArgs e)
         {
-            MovePlayer(_player.Location.W);
+            MovePlayer(adv.Player.Location.W);
         }
 
         private void eastBtn_Click(object sender, EventArgs e)
         {
-            MovePlayer(_player.Location.E);
+            MovePlayer(adv.Player.Location.E);
         }
 
         private void southBtn_Click(object sender, EventArgs e)
         {
-            MovePlayer(_player.Location.S);
+            MovePlayer(adv.Player.Location.S);
         }
 
-        private string getExits(Room room)
+        public string getExits(Room room)
         {
             string s = "";
             string temp = "";

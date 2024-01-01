@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdvConsts.cs" />
+    <Compile Include="Adventure.cs" />
     <Compile Include="Game.cs">
       <SubType>Form</SubType>
     </Compile>
