@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,12 +22,13 @@ namespace Game04
         {
             InitializeComponent();
             InitGame();
-            StartGame();
+
         }
 
         private void InitGame()
         {
-            adv = new Adventure();        
+            adv = new Adventure();
+            StartGame();
         }
 
         private void StartGame()
@@ -37,6 +40,29 @@ namespace Game04
             outputTB.AppendText($"Exits: {getExits(adv.Player.Location)}\r\n");
             outputTB.AppendText("Where do you want to go now?\r\n");
             outputTB.AppendText("Click a direction button: North, South, West or East.\r\n");
+        }
+
+        private void Wr(string s)
+        {
+            outputTB.AppendText(s);
+        }
+
+        private void WrLn(string s)
+        {
+            Wr(s + "\r\n");
+
+        }
+
+        private void ShowLocation()
+        {
+            Wr(adv.Player.Name);
+            Wr(" are currently in this room: ");
+            WrLn(adv.Player.Location.Describe());
+        }
+
+        private void ShowInventory()
+        {
+            WrLn("You have " + adv.Player.Things.Describe());
         }
 
         private void lookBtn_Click(object sender, EventArgs e)
@@ -117,6 +143,70 @@ namespace Game04
 
         }
 
+        private void takeBtn_Click(object sender, EventArgs e)
+        {
+            WrLn(adv.TakeOb(InputTB.Text));
+        }
+
+        private void dropBtn_Click(object sender, EventArgs e)
+        {
+            WrLn(adv.DropOb(InputTB.Text));
+        }
+
+        private void invBtn_Click(object sender, EventArgs e)
+        {
+            ShowInventory();
+        }
+
+        private void LookAtBtn_Click(object sender, EventArgs e)
+        {
+            WrLn(adv.LookAtOb(InputTB.Text));
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Stream st;
+            BinaryFormatter binfmt;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if ((st = openFileDialog1.OpenFile()) != null)
+                {
+                    binfmt = new BinaryFormatter();
+                    adv = (Adventure)binfmt.Deserialize(st);
+                    st.Close();
+                }
+            }
+            outputTB.Clear();
+            ShowLocation();
+        }
+
+        private void restartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InitGame();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Stream st;
+            BinaryFormatter binfmt;
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if ((st = saveFileDialog1.OpenFile()) != null)
+                {
+                    // Save to disk
+                    binfmt = new BinaryFormatter();
+                    binfmt.Serialize(st, adv);
+                    st.Close();
+                    WrLn("Saved");
+                }
+            }
+        }
     }
 }

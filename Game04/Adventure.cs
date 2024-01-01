@@ -138,6 +138,82 @@ namespace Game04
             return s;
 
         }
+
+        private void TransferOb(Thing t, ThingList fromlist, ThingList tolist)
+        {
+            fromlist.Remove(t);
+            tolist.Add(t);
+        }
+
+        public string TakeOb(string obname)
+        {
+            Thing t = _player.Location.Things.ThisOb(obname);
+            string s = "";
+            if (obname == "")
+            {
+                obname = "nameless object"; // if no object specified
+            }
+            if (t == null)
+            {
+                s = "There is no " + obname + " here!";
+            }
+            else
+            {
+                if (t.CanTake)
+                {
+                    TransferOb(t, _player.Location.Things, _player.Things);
+                    s = t.Name + " taken!";
+                }
+                else
+                {
+                    s = "You can't take the " + t.Name + "!";
+                }
+            }
+            return s;
+        }
+
+        public string DropOb(string obname)
+        {
+            Thing t = _player.Things.ThisOb(obname);
+            string s = "";
+            if (t == null)
+            {
+                s = "You haven't got one!";
+            }
+            else
+            {
+                TransferOb(t, _player.Things, _player.Location.Things);
+                s = t.Name + " dropped!";
+            }
+            return s;
+        }
+
+        public string LookAtOb(string obname)
+        {
+            Thing t;
+            string s = "";
+            if (obname == "")
+            {
+                s = "You'll have to say what you want to look at!";
+            }
+            else
+            {
+                t = _player.Location.Things.ThisOb(obname);
+                if (t == null)
+                {
+                    t = _player.Things.ThisOb(obname);
+                }
+                if (t == null)
+                {
+                    s = "There is no " + obname + " here!";
+                }
+                else
+                {
+                    s = t.Description + ".";
+                }
+            }
+            return s;
+        }
     }
 }
 

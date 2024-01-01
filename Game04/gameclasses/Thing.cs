@@ -41,5 +41,16 @@ namespace Game04.gameclasses
             get => _description;
             set => _description = value;
         }
+
+        public bool CanTake
+        {
+            get => _cantake;
+            set => _cantake = value;
+        }
+
+        public virtual string Describe()
+        {
+            return Name + " " + Description;
+        }
     }
 }
