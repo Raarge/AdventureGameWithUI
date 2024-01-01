@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Game04.gameclasses
 {
-    public class Actor : Thing
+    public class Actor : ThingHolder
     {
         private Room _location; // Room where Actor is at present
 
-        public Actor(string aName, string aDescription, Room aRoom) :
-           base(aName, aDescription)
+        public Actor(string aName, string aDescription, Room aRoom, ThingList tl) :
+           base(aName, aDescription, tl)
         {
             _location = aRoom;
         }

@@ -10,12 +10,22 @@ namespace Game04.gameclasses
     {
         private string _name;
         private string _description;
+        private bool _cantake;
 
         public Thing(string aName, string aDescription)
         {
             // standard constructor: 
             _name = aName;
             _description = aDescription;
+            _cantake = true;
+        }
+
+        public Thing(string aName, string aDescription, bool aCantake)
+        {
+            // alternative constructor
+            _name = aName;
+            _description = aDescription;
+            _cantake = aCantake;
         }
 
         //  Name property

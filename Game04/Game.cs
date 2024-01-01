@@ -42,15 +42,16 @@ namespace Game04
         private void lookBtn_Click(object sender, EventArgs e)
         {
             outputTB.Text = $"You are in the {adv.Player.Location.Name}.\r\n";
-            outputTB.AppendText($"It is {adv.Player.Location.Description}\r\n");
-            outputTB.AppendText($"Exits: {getExits(adv.Player.Location)}");
+            outputTB.AppendText($"{adv.Player.Location.Describe()}\r\n");
+            outputTB.AppendText($"Exits: {getExits(adv.Player.Location)}\r\n");
+            
         }
 
         private void MovePlayer(Dir direction)
         {
-            //roomnameTB.Text = adv.Player.Location.Name;
             outputTB.Text = adv.MovePlayerTo(direction);
-            
+            roomnameTB.Text = adv.Player.Location.Name;
+
         }
 
         private void northBtn_Click(object sender, EventArgs e)
@@ -115,5 +116,7 @@ namespace Game04
             return s;
 
         }
+
+        
     }
 }

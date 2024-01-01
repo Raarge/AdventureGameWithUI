@@ -14,6 +14,14 @@ namespace Game04
 
         public Adventure()
         {
+            ThingList trollroomlist = new ThingList();
+            ThingList forestlist = new ThingList();
+
+            trollroomlist.Add(new Thing("carrot", "It is a very crunchy carrot"));
+
+            forestlist.Add(new Thing("sausage", "It is a plump port sausage"));
+            forestlist.Add(new Thing("tree", "It is a gigantic oak tree", false));
+
             /*
             * 
             * Troll Room -- Forest
@@ -23,12 +31,12 @@ namespace Game04
 
             _map = new RoomList();
             /*                                                                                          N          S          W          E          */
-            _map.Add(Rm.TrollRoom, new Room("Troll Room", "a dank, dark room that smells of troll", Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, Rm.Forest));
-            _map.Add(Rm.Forest, new Room("Forest", "a light, airy forest shimmering with sunlight", Rm.NOEXIT, Rm.NOEXIT, Rm.TrollRoom, Rm.NOEXIT));
-            _map.Add(Rm.Cave, new Room("Cave", "a vast cave with walls covered by luminous moss", Rm.TrollRoom, Rm.NOEXIT, Rm.NOEXIT, Rm.Dungeon));
-            _map.Add(Rm.Dungeon, new Room("Dungeon", "a gloomy dungeon. Rats scurry across its floor", Rm.NOEXIT, Rm.NOEXIT, Rm.Cave, Rm.NOEXIT));
+            _map.Add(Rm.TrollRoom, new Room("Troll Room", "a dank, dark room that smells of troll", Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, Rm.Forest, trollroomlist));
+            _map.Add(Rm.Forest, new Room("Forest", "a light, airy forest shimmering with sunlight", Rm.NOEXIT, Rm.NOEXIT, Rm.TrollRoom, Rm.NOEXIT, forestlist));
+            _map.Add(Rm.Cave, new Room("Cave", "a vast cave with walls covered by luminous moss", Rm.TrollRoom, Rm.NOEXIT, Rm.NOEXIT, Rm.Dungeon, new ThingList()));
+            _map.Add(Rm.Dungeon, new Room("Dungeon", "a gloomy dungeon. Rats scurry across its floor", Rm.NOEXIT, Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, new ThingList()));
 
-            _player = new Actor("You", "The Player", _map.RoomAt(Rm.TrollRoom));
+            _player = new Actor("You", "The Player", _map.RoomAt(Rm.TrollRoom), new ThingList());
 
         }
 
@@ -83,7 +91,7 @@ namespace Game04
             }
             else
             {
-               s = $"You are now in the {_player.Location.Name}\r\n Exits: {getExits(_player.Location)}";
+               s = $"You are now in the {_player.Location.Name}\r\n{_player.Location.Describe()}\r\nExits: {getExits(_player.Location)}";
             }
             return s;
         }

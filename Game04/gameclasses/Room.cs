@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game04.gameclasses
 {
-    public class Room : Thing
+    public class Room : ThingHolder
     {
         private Rm _n;
         private Rm _s;
@@ -14,8 +14,8 @@ namespace Game04.gameclasses
         private Rm _e;
 
         public Room(string aName, string aDescription,
-            Rm aN, Rm aS, Rm aW, Rm aE)
-            : base(aName, aDescription)
+            Rm aN, Rm aS, Rm aW, Rm aE, ThingList tl)
+            : base(aName, aDescription, tl)
         {
             _n = aN;
             _s = aS;
@@ -50,7 +50,7 @@ namespace Game04.gameclasses
 
         public string Describe()
         {
-            return $"[{Name}] This is {Description}";
+            return $"This is {Description}" + "\r\nHere there is: " + Things.Describe();
         }
     }
 }
