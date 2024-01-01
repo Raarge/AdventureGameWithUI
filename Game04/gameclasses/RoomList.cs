@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Game04.gameclasses
 {
+    [Serializable]
     public class RoomList : Dictionary<Rm, Room>
     {
         public RoomList() { }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game04.gameclasses
 {
+    [Serializable]
     public class ThingHolder : Thing
     {
         private ThingList _things = new ThingList();

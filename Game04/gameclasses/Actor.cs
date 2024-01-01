@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game04.gameclasses
 {
+    [Serializable]
     public class Actor : ThingHolder
     {
         private Room _location; // Room where Actor is at present

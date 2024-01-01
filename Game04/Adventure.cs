@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Game04
 {
+    [Serializable]
     public class Adventure
     {
         private RoomList _map;
