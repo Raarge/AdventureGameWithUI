@@ -12,6 +12,7 @@ namespace Game04.gameclasses
         private string _name;
         private string _description;
         private bool _cantake;
+        private bool _movable;
 
         public Thing(string aName, string aDescription)
         {
@@ -19,14 +20,16 @@ namespace Game04.gameclasses
             _name = aName;
             _description = aDescription;
             _cantake = true;
+            _movable = true;
         }
 
-        public Thing(string aName, string aDescription, bool aCantake)
+        public Thing(string aName, string aDescription, bool aCantake, bool isMovable)
         {
             // alternative constructor
             _name = aName;
             _description = aDescription;
             _cantake = aCantake;
+            _movable = isMovable;
         }
 
         //  Name property
@@ -47,6 +50,12 @@ namespace Game04.gameclasses
         {
             get => _cantake;
             set => _cantake = value;
+        }
+
+        public bool Movable
+        {
+            get => _movable;
+            set => _movable = value;
         }
 
         public virtual string Describe()

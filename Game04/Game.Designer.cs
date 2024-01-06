@@ -50,6 +50,11 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.upBtn = new System.Windows.Forms.Button();
+            this.downBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmdTB = new System.Windows.Forms.TextBox();
+            this.cmdBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -64,7 +69,7 @@
             // 
             // lookBtn
             // 
-            this.lookBtn.Location = new System.Drawing.Point(377, 367);
+            this.lookBtn.Location = new System.Drawing.Point(360, 418);
             this.lookBtn.Name = "lookBtn";
             this.lookBtn.Size = new System.Drawing.Size(75, 23);
             this.lookBtn.TabIndex = 1;
@@ -74,7 +79,7 @@
             // 
             // northBtn
             // 
-            this.northBtn.Location = new System.Drawing.Point(572, 347);
+            this.northBtn.Location = new System.Drawing.Point(538, 379);
             this.northBtn.Name = "northBtn";
             this.northBtn.Size = new System.Drawing.Size(75, 23);
             this.northBtn.TabIndex = 2;
@@ -84,7 +89,7 @@
             // 
             // westBtn
             // 
-            this.westBtn.Location = new System.Drawing.Point(492, 376);
+            this.westBtn.Location = new System.Drawing.Point(458, 408);
             this.westBtn.Name = "westBtn";
             this.westBtn.Size = new System.Drawing.Size(75, 23);
             this.westBtn.TabIndex = 3;
@@ -94,7 +99,7 @@
             // 
             // eastBtn
             // 
-            this.eastBtn.Location = new System.Drawing.Point(650, 376);
+            this.eastBtn.Location = new System.Drawing.Point(616, 408);
             this.eastBtn.Name = "eastBtn";
             this.eastBtn.Size = new System.Drawing.Size(75, 23);
             this.eastBtn.TabIndex = 4;
@@ -104,7 +109,7 @@
             // 
             // southBtn
             // 
-            this.southBtn.Location = new System.Drawing.Point(572, 396);
+            this.southBtn.Location = new System.Drawing.Point(538, 428);
             this.southBtn.Name = "southBtn";
             this.southBtn.Size = new System.Drawing.Size(75, 23);
             this.southBtn.TabIndex = 5;
@@ -141,7 +146,7 @@
             // 
             // invBtn
             // 
-            this.invBtn.Location = new System.Drawing.Point(377, 396);
+            this.invBtn.Location = new System.Drawing.Point(360, 447);
             this.invBtn.Name = "invBtn";
             this.invBtn.Size = new System.Drawing.Size(75, 23);
             this.invBtn.TabIndex = 9;
@@ -155,7 +160,7 @@
             this.groupBox1.Controls.Add(this.LookAtBtn);
             this.groupBox1.Controls.Add(this.takeBtn);
             this.groupBox1.Controls.Add(this.dropBtn);
-            this.groupBox1.Location = new System.Drawing.Point(46, 348);
+            this.groupBox1.Location = new System.Drawing.Point(46, 399);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(289, 100);
             this.groupBox1.TabIndex = 10;
@@ -204,41 +209,92 @@
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.loadToolStripMenuItem.Text = "&Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // restartToolStripMenuItem
             // 
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.restartToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.restartToolStripMenuItem.Text = "&Restart";
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(107, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // upBtn
+            // 
+            this.upBtn.Location = new System.Drawing.Point(650, 347);
+            this.upBtn.Name = "upBtn";
+            this.upBtn.Size = new System.Drawing.Size(75, 23);
+            this.upBtn.TabIndex = 12;
+            this.upBtn.Text = "Up";
+            this.upBtn.UseVisualStyleBackColor = true;
+            // 
+            // downBtn
+            // 
+            this.downBtn.Location = new System.Drawing.Point(650, 470);
+            this.downBtn.Name = "downBtn";
+            this.downBtn.Size = new System.Drawing.Size(75, 23);
+            this.downBtn.TabIndex = 13;
+            this.downBtn.Text = "Down";
+            this.downBtn.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(49, 357);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Enter a command:";
+            // 
+            // cmdTB
+            // 
+            this.cmdTB.Location = new System.Drawing.Point(148, 354);
+            this.cmdTB.Name = "cmdTB";
+            this.cmdTB.Size = new System.Drawing.Size(250, 20);
+            this.cmdTB.TabIndex = 15;
+            this.cmdTB.TextChanged += new System.EventHandler(this.cmdTB_TextChanged);
+            // 
+            // cmdBtn
+            // 
+            this.cmdBtn.Font = new System.Drawing.Font("Wingdings 2", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.cmdBtn.Location = new System.Drawing.Point(404, 347);
+            this.cmdBtn.Name = "cmdBtn";
+            this.cmdBtn.Size = new System.Drawing.Size(42, 34);
+            this.cmdBtn.TabIndex = 16;
+            this.cmdBtn.Text = "P";
+            this.cmdBtn.UseVisualStyleBackColor = true;
+            this.cmdBtn.Click += new System.EventHandler(this.cmdBtn_Click);
             // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 454);
+            this.ClientSize = new System.Drawing.Size(800, 516);
+            this.Controls.Add(this.cmdBtn);
+            this.Controls.Add(this.cmdTB);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.downBtn);
+            this.Controls.Add(this.upBtn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.invBtn);
             this.Controls.Add(this.roomnameTB);
@@ -284,6 +340,11 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button upBtn;
+        private System.Windows.Forms.Button downBtn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox cmdTB;
+        private System.Windows.Forms.Button cmdBtn;
     }
 }
 

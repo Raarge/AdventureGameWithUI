@@ -22,5 +22,9 @@ namespace Game04.gameclasses
             get => _location;
             set => _location = value;
         }
+        public override string Describe()
+        {
+            return $"({Description}) is in {_location.Describe()}";
+        }
     }
 }

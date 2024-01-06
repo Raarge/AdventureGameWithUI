@@ -208,5 +208,19 @@ namespace Game04
                 }
             }
         }
+
+        private void cmdBtn_Click(object sender, EventArgs e)
+        {
+            WrLn(adv.RunCommand(cmdTB.Text));
+        }
+
+        private void cmdTB_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                WrLn(adv.RunCommand(cmdTB.Text));
+                cmdTB.Clear();
+            }
+        }
     }
 }

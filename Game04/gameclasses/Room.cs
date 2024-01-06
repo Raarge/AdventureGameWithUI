@@ -49,7 +49,7 @@ namespace Game04.gameclasses
             set => _e = value;
         }
 
-        public string Describe()
+        public override string Describe()
         {
             return $"This is {Description}" + "\r\nHere there is: " + Things.Describe();
         }

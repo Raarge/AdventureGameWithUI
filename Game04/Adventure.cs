@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Game04
 {
     [Serializable]
-    public class Adventure
+    public partial class Adventure
     {
         private RoomList _map;
         private Actor _player;
@@ -21,7 +21,7 @@ namespace Game04
             trollroomlist.Add(new Thing("carrot", "It is a very crunchy carrot"));
 
             forestlist.Add(new Thing("sausage", "It is a plump port sausage"));
-            forestlist.Add(new Thing("tree", "It is a gigantic oak tree", false));
+            forestlist.Add(new Thing("tree", "It is a gigantic oak tree", false, false));
 
             /*
             * 

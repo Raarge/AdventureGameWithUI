@@ -17,8 +17,8 @@ namespace Game04.gameclasses
             _things = tl;
         }
 
-        public ThingHolder(string aName, string aDescription, bool aCanTake, ThingList tl)
-            : base(aName, aDescription, aCanTake)
+        public ThingHolder(string aName, string aDescription, bool aCanTake, bool isMovable, ThingList tl)
+            : base(aName, aDescription, aCanTake, isMovable)
         {
             _things = tl;
         }
@@ -39,7 +39,7 @@ namespace Game04.gameclasses
             _things.AddRange(aThingList);
         }
 
-        public string Describe()
+        public override string Describe()
         {
             return $"Name: {Name}, Description {Description}" +
                  " which contains -> {_things.Describe()}";

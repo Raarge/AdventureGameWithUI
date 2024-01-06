@@ -55,6 +55,7 @@
       <DependentUpon>Game.cs</DependentUpon>
     </Compile>
     <Compile Include="gameclasses\Actor.cs" />
+    <Compile Include="gameclasses\ContainerThing.cs" />
     <Compile Include="gameclasses\RoomList.cs" />
     <Compile Include="gameclasses\Thing.cs" />
     <Compile Include="gameclasses\ThingHolder.cs" />
