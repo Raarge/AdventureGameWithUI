@@ -71,6 +71,12 @@ namespace Game04
                 case Dir.WEST:
                     exit = r.W;
                     break;
+                case Dir.UP:
+                    exit = r.Up;
+                    break;
+                case Dir.DOWN:
+                    exit = r.Down;
+                    break;
                 default:
                     exit = Rm.NOEXIT;
                     break;
@@ -136,6 +142,26 @@ namespace Game04
                 temp = "West";
                 s = s + temp;
             }
+            if (s == "West")
+            {
+                temp = s + ", ";
+                s = s + temp;
+            }
+            if (room.Up != Rm.NOEXIT)
+            {
+                temp = "Up";
+                s = s + temp;
+            }
+            if (s == "Up")
+            {
+                temp = s + ", ";
+                s = s + temp;
+            }
+            if (room.Down != Rm.NOEXIT)
+            {
+                temp = "Down";
+                s = s + temp;
+            }
             return s;
 
         }
@@ -144,6 +170,89 @@ namespace Game04
         {
             fromlist.Remove(t);
             tolist.Add(t);
+        }
+
+        private KeyValuePair<Thing, ThingList> ObInContainerHere(string obname)
+        {
+            ContainerThing ct = null;
+            Thing t = null;
+            ThingList tl = null;
+            foreach (Thing ob in _player.Location.Things)
+            {
+                if (ob is ContainerThing)
+                {
+                    ct = (ContainerThing)ob;
+                    if (ct.IsOpen)
+                    {
+                        tl = ct.Things;
+                        t = ct.Things.GetOb(obname);
+                    }
+                }
+            }
+            return new KeyValuePair<Thing, ThingList>(t, tl);
+        }
+
+        private Thing ObHere(string obname)
+        {
+            // look for ob in current room and player's inventory
+            // return ob if found, else return null
+            KeyValuePair<Thing, ThingList> kv;
+            Thing t = null;
+            t = _player.Location.Things.GetOb(obname);
+            if (t == null)
+            {
+                t = _player.Things.GetOb(obname);
+            }
+            if (t == null)
+            {
+                kv = ObInContainerHere(obname);
+                t = kv.Key;
+            }
+            return t;
+        }
+
+        private string TryToOpen(ContainerThing t)
+        {
+            string s = "";
+            if (!t.Openable)
+            {
+                s = $"Can't open the {t.Name}";
+            }
+            else
+            {
+                if (t.IsOpen)
+                {
+                    s = $"The {t.Name} is already open.";
+                }
+                else
+                {
+                    t.IsOpen = true;
+                    s = $"You open the {t.Name}";
+                }
+            }
+            return s;
+        }
+
+        private string TryToClose(ContainerThing t)
+        {
+            string s = "";
+            if (!t.Openable)
+            {
+                s = $"Can't close the {t.Name}";
+            }
+            else
+            {
+                if (t.IsOpen)
+                {
+                    t.IsOpen = false;
+                    s = $"You close the {t.Name}";
+                }
+                else
+                {
+                    s = $"The {t.Name} is already closed.";
+                }
+            }
+            return s;
         }
 
         public string TakeOb(string obname)
@@ -214,6 +323,152 @@ namespace Game04
                 }
             }
             return s;
+        }
+
+        public string PutObInContainer(string obname, string containername)
+        {
+            string s = "";
+            Thing t = _player.Things.GetOb(obname);
+            Thing container = ObHere(containername);
+            if (t == null)
+            {
+                s = $"You haven't got the {obname}!";
+            }
+            else if (container == null)
+            {
+                s = $"There is no {containername} here!";
+            }
+            else if (!(container is ContainerThing))
+            {
+                s = $"You can't put the {obname} into the {containername}!";
+            }
+            else if (!((ContainerThing)container).IsOpen)
+            {
+                s = $"You can't put the {obname} into a closed {containername}!";
+            }
+            else
+            {
+                TransferOb(t, _player.Things, ((ContainerThing)container).Things);
+                s = $"You put the {obname} into the {containername}.";
+            }
+            return s;
+        }
+
+        public string OpenOb(string obname)
+        {
+            Thing t;
+            string s = "";
+            if (obname == "")
+            {
+                s = "You'll have to say what you want to open!";
+            }
+            else
+            {
+                t = ObHere(obname);
+                if (t == null)
+                {
+                    s = $"There is no {obname} here!";
+                }
+                else
+                {
+                    if (t is ContainerThing)
+                    {
+                        s = TryToOpen((ContainerThing)t);
+                    }
+                    else
+                    {
+                        s = $"Cannot open the {obname}";
+                    }
+                }
+            }
+            return s;
+        }
+
+
+        public string CloseOb(string obname)
+        {
+            Thing t;
+            string s = "";
+            if (obname == "")
+            {
+                s = "You'll have to say what you want to close!";
+            }
+            else
+            {
+                t = ObHere(obname);
+                if (t == null)
+                {
+                    s = $"There is no {obname} here!";
+                }
+                else
+                {
+                    if (t is ContainerThing)
+                    {
+                        s = TryToClose((ContainerThing)t);
+                    }
+                    else
+                    {
+                        s = $"Cannot close the {obname}";
+                    }
+                }
+            }
+            return s;
+        }
+
+        public string PullOb(string obname)
+        {
+            Thing t;
+            string s = "";
+            t = ObHere(obname);
+            if (t == null)
+            {
+                s = $"There is no {obname} here!";
+            }
+            else
+            {
+                s = PullSpecial(t);
+                if (s == "")
+                {
+                    if (t.Movable)
+                    {
+                        s = $"The {obname} moves slightly when you pull it.";
+                    }
+                    else
+                    {
+                        s = $"You try to pull the {obname} but nothing happens.";
+                    }
+                }
+            }
+            return s;
+        }
+
+
+        public string PushOb(string obname)
+        {
+            Thing t;
+            string s = "";
+            t = ObHere(obname);
+            if (t == null)
+            {
+                s = $"There is no {obname} here!";
+            }
+            else
+            {
+                if (t.Movable)
+                {
+                    s = $"The {obname} moves slightly when you push it.";
+                }
+                else
+                {
+                    s = $"You try to push the {obname} but nothing happens.";
+                }
+            }
+            return s;
+        }
+
+        public string Look()
+        {
+            return "You are in " + _player.Location.Describe();
         }
     }
 }

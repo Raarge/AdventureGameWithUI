@@ -15,11 +15,29 @@ namespace Game04
         NOEXIT
     }
 
+    public enum ObID
+    {
+        Leaflet,
+        SignGoreStreet,
+        SignOpiumTerrace,
+        Bone,
+        Coin,
+        Knife,
+        Lamp,
+        Acorn,
+        Bed,
+        Key,
+        Bin,
+        Chest
+    }
+
     public enum Dir
     {
         NORTH,
         SOUTH,
+        EAST,
         WEST,
-        EAST
+        UP,
+        DOWN
     }
 }

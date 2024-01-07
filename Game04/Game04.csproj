@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="AdvConsts.cs" />
     <Compile Include="Adventure.cs" />
+    <Compile Include="Adventure.parser.cs" />
+    <Compile Include="Adventure.puzzles.cs" />
     <Compile Include="Game.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +65,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="gameclasses\Room.cs" />
+    <Compile Include="WordType.cs" />
+    <Compile Include="WT.cs" />
     <EmbeddedResource Include="Game.resx">
       <DependentUpon>Game.cs</DependentUpon>
     </EmbeddedResource>

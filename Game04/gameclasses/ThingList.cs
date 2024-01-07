@@ -44,5 +44,21 @@ namespace Game04.gameclasses
             }
             return athing;
         }
+
+        public Thing GetOb(string aName)
+        {
+            Thing athing = null;
+            string thingName = "";
+            string aNameLowCase = aName.Trim().ToLower();
+            foreach (Thing t in this)
+            {
+                thingName = t.Name.Trim().ToLower();
+                if (thingName.Equals(aNameLowCase))
+                {
+                    athing = t;
+                }
+            }
+            return athing;
+        }
     }
 }

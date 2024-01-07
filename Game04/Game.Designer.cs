@@ -272,7 +272,7 @@
             this.cmdTB.Name = "cmdTB";
             this.cmdTB.Size = new System.Drawing.Size(250, 20);
             this.cmdTB.TabIndex = 15;
-            this.cmdTB.TextChanged += new System.EventHandler(this.cmdTB_TextChanged);
+            this.cmdTB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmdTB_KeyDown);
             // 
             // cmdBtn
             // 
