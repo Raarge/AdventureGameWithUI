@@ -38,6 +38,8 @@ namespace Game04
             _map.Add(Rm.Cave, new Room("Cave", "a vast cave with walls covered by luminous moss", Rm.TrollRoom, Rm.NOEXIT, Rm.NOEXIT, Rm.Dungeon, new ThingList()));
             _map.Add(Rm.Dungeon, new Room("Dungeon", "a gloomy dungeon. Rats scurry across its floor", Rm.NOEXIT, Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, new ThingList()));
 
+            _map[Rm.Cave].AddThing(new ContainerThing("sack", "a worn old sack", true, true, true, true, new ThingList()));
+
             _player = new Actor("You", "The Player", _map.RoomAt(Rm.TrollRoom), new ThingList());
 
         }
@@ -258,13 +260,24 @@ namespace Game04
 
         public string TakeOb(string obname)
         {
-            Thing t = _player.Location.Things.ThisOb(obname);
+            KeyValuePair<Thing, ThingList> kv;
+            Thing t;
+            ThingList tl;
             string s = "";
+            t = _player.Location.Things.GetOb(obname);
+            tl = _player.Location.Things;
+            
             if (obname == "")
             {
                 obname = "nameless object"; // if no object specified
             }
             if (t == null)
+            {
+                kv = ObInContainerHere(obname);
+                t = kv.Key;
+                tl = kv.Value;
+            }
+            else if (t == null)
             {
                 s = "There is no " + obname + " here!";
             }
@@ -272,8 +285,8 @@ namespace Game04
             {
                 if (t.CanTake)
                 {
-                    TransferOb(t, _player.Location.Things, _player.Things);
-                    s = t.Name + " taken!";
+                    TransferOb(t, tl, _player.Things);
+                    s = "\r\n" + t.Name + " taken!";
                 }
                 else
                 {

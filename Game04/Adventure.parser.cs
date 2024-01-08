@@ -32,6 +32,7 @@ namespace Game04
             vocab.Add("pearl", WT.NOUN);
             vocab.Add("rat", WT.NOUN);
             vocab.Add("sack", WT.NOUN);
+            vocab.Add("sausage", WT.NOUN);
             vocab.Add("shop", WT.NOUN);
             vocab.Add("sign", WT.NOUN);
             vocab.Add("slot", WT.NOUN);
