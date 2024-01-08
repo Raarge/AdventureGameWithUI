@@ -124,6 +124,10 @@ namespace Game04
                     case "lookat":
                         s = LookAtOb(wt3.Word);
                         break;
+                    case "lookin":
+                    case "lookinto":
+                        s = LookInContainer(wt3.Word);
+                        break;
                     default:
                         s = $"I don't know how to {wt.Word} {wt2.Word} a {wt3.Word}!";
                         break;

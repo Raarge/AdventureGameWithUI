@@ -1,5 +1,6 @@
 ﻿using Game04.gameclasses;
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -101,7 +102,7 @@ namespace Game04
             }
             else
             {
-               s = $"You are now in the {_player.Location.Name}\r\n{_player.Location.Describe()}\r\nExits: {getExits(_player.Location)}";
+                s = $"You are now in the {_player.Location.Name}\r\n{_player.Location.Describe()}\r\nExits: {getExits(_player.Location)}";
             }
             return s;
         }
@@ -266,7 +267,7 @@ namespace Game04
             string s = "";
             t = _player.Location.Things.GetOb(obname);
             tl = _player.Location.Things;
-            
+
             if (obname == "")
             {
                 obname = "nameless object"; // if no object specified
@@ -338,6 +339,42 @@ namespace Game04
             }
             return s;
         }
+
+        public string LookInContainer(string obname)
+        {
+            ContainerThing t;
+            ThingList tl;
+            string s;
+            string temp = null;
+            if (obname == "")
+            {
+                s = "You'll have to say what you want to look into!";
+            }
+            else
+            {
+                t = (ContainerThing)_player.Location.Things.ThisOb(obname);
+                if (t == null)
+                {
+                    t = (ContainerThing)_player.Things.ThisOb(obname);
+                }
+                if (t == null)
+                {
+                    s = "There is no " + obname + " here!";
+                }
+                else
+                {
+                    s = t.Description + "contains: \r\n";
+                    foreach (Thing t2 in t.Things)
+                    {
+                        temp = temp + t2.Name + ", " + t2.Description + "\r\n";
+                    }
+                    s = s + temp;
+                }
+            }
+            return s;
+        }
+    
+     
 
         public string PutObInContainer(string obname, string containername)
         {
