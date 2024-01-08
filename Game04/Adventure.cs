@@ -15,6 +15,7 @@ namespace Game04
 
         public Adventure()
         {
+            InitVocab();
             ThingList trollroomlist = new ThingList();
             ThingList forestlist = new ThingList();
 
@@ -145,7 +146,7 @@ namespace Game04
             if (s == "West")
             {
                 temp = s + ", ";
-                s = s + temp;
+                s = temp;
             }
             if (room.Up != Rm.NOEXIT)
             {
@@ -155,12 +156,12 @@ namespace Game04
             if (s == "Up")
             {
                 temp = s + ", ";
-                s = s + temp;
+                s = temp;
             }
             if (room.Down != Rm.NOEXIT)
             {
                 temp = "Down";
-                s = s + temp;
+                s = temp;
             }
             return s;
 

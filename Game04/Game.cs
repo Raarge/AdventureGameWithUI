@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Game04.gameclasses;
 
+
 namespace Game04
 {
     public partial class Game : Form
@@ -40,6 +41,7 @@ namespace Game04
             outputTB.AppendText($"Exits: {getExits(adv.Player.Location)}\r\n");
             outputTB.AppendText("Where do you want to go now?\r\n");
             outputTB.AppendText("Click a direction button: North, South, West or East.\r\n");
+            ShowLocation();
         }
 
         private void Wr(string s)
@@ -139,6 +141,26 @@ namespace Game04
                 temp = "West";
                 s = s + temp;
             }
+            if (s == "West")
+            {
+                temp = s + ", ";
+                s = temp;
+            }
+            if (room.Up != Rm.NOEXIT)
+            {
+                temp = "Up";
+                s = s + temp;
+            }
+            if (s == "Up")
+            {
+                temp = s + ", ";
+                s = temp;
+            }
+            if (room.Down != Rm.NOEXIT)
+            {
+                temp = "Down";
+                s = s + temp;
+            }
             return s;
 
         }
@@ -221,6 +243,16 @@ namespace Game04
                 WrLn(adv.RunCommand(cmdTB.Text));
                 cmdTB.Clear();
             }
+        }
+
+        private void upBtn_Click(object sender, EventArgs e)
+        {
+            MovePlayer(Dir.UP);
+        }
+
+        private void downBtn_Click(object sender, EventArgs e)
+        {
+            MovePlayer(Dir.DOWN);
         }
     }
 }

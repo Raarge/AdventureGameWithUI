@@ -17,6 +17,7 @@ namespace Game04
             vocab.Add("bin", WT.NOUN);
             vocab.Add("bone", WT.NOUN);
             vocab.Add("button", WT.NOUN);
+            vocab.Add("carrot", WT.NOUN);
             vocab.Add("cheese", WT.NOUN);
             vocab.Add("chest", WT.NOUN);
             vocab.Add("coin", WT.NOUN);

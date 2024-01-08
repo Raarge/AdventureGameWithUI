@@ -247,6 +247,7 @@
             this.upBtn.TabIndex = 12;
             this.upBtn.Text = "Up";
             this.upBtn.UseVisualStyleBackColor = true;
+            this.upBtn.Click += new System.EventHandler(this.upBtn_Click);
             // 
             // downBtn
             // 
@@ -256,6 +257,7 @@
             this.downBtn.TabIndex = 13;
             this.downBtn.Text = "Down";
             this.downBtn.UseVisualStyleBackColor = true;
+            this.downBtn.Click += new System.EventHandler(this.downBtn_Click);
             // 
             // label1
             // 
