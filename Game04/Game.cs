@@ -85,21 +85,25 @@ namespace Game04
         private void northBtn_Click(object sender, EventArgs e)
         {
             MovePlayer(Dir.NORTH);
+            cmdTB.Focus();
         }
 
         private void westBtn_Click(object sender, EventArgs e)
         {
             MovePlayer(Dir.WEST);
+            cmdTB.Focus();
         }
 
         private void eastBtn_Click(object sender, EventArgs e)
         {
             MovePlayer(Dir.EAST);
+            cmdTB.Focus();
         }
 
         private void southBtn_Click(object sender, EventArgs e)
         {
             MovePlayer(Dir.SOUTH);
+            cmdTB.Focus();
         }
 
         public string getExits(Room room)
@@ -167,6 +171,7 @@ namespace Game04
 
         private void takeBtn_Click(object sender, EventArgs e)
         {
+            string cn = null;
             WrLn(adv.TakeOb(InputTB.Text));
         }
 
@@ -249,11 +254,13 @@ namespace Game04
         private void upBtn_Click(object sender, EventArgs e)
         {
             MovePlayer(Dir.UP);
+            cmdTB.Focus();
         }
 
         private void downBtn_Click(object sender, EventArgs e)
         {
             MovePlayer(Dir.DOWN);
+            cmdTB.Focus();
         }
     }
 }

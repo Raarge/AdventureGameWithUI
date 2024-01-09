@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Game04
 {
@@ -40,6 +41,7 @@ namespace Game04
             _map.Add(Rm.Dungeon, new Room("Dungeon", "a gloomy dungeon. Rats scurry across its floor", Rm.NOEXIT, Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, new ThingList()));
 
             _map[Rm.Cave].AddThing(new ContainerThing("sack", "a worn old sack", true, true, true, true, new ThingList()));
+            _map[Rm.Cave].AddThing(new ContainerThing("box", "a wooden box", true, true, true, true, new ThingList()));
 
             _player = new Actor("You", "The Player", _map.RoomAt(Rm.TrollRoom), new ThingList());
 
@@ -181,7 +183,7 @@ namespace Game04
             ContainerThing ct = null;
             Thing t = null;
             ThingList tl = null;
-            foreach (Thing ob in _player.Location.Things)
+            foreach (Thing ob in _player.Things)
             {
                 if (ob is ContainerThing)
                 {
@@ -278,11 +280,11 @@ namespace Game04
                 t = kv.Key;
                 tl = kv.Value;
             }
-            else if (t == null)
+            if (t == null)
             {
                 s = "There is no " + obname + " here!";
             }
-            else
+            else 
             {
                 if (t.CanTake)
                 {
@@ -373,8 +375,6 @@ namespace Game04
             }
             return s;
         }
-    
-     
 
         public string PutObInContainer(string obname, string containername)
         {

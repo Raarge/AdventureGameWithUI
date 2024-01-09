@@ -16,6 +16,7 @@ namespace Game04
             vocab.Add("bed", WT.NOUN);
             vocab.Add("bin", WT.NOUN);
             vocab.Add("bone", WT.NOUN);
+            vocab.Add("box", WT.NOUN);
             vocab.Add("button", WT.NOUN);
             vocab.Add("carrot", WT.NOUN);
             vocab.Add("cheese", WT.NOUN);
@@ -54,6 +55,7 @@ namespace Game04
             vocab.Add("a", WT.ARTICLE);
             vocab.Add("an", WT.ARTICLE);
             vocab.Add("the", WT.ARTICLE);
+            vocab.Add("from", WT.PREPOSITION);
             vocab.Add("in", WT.PREPOSITION);
             vocab.Add("into", WT.PREPOSITION);
             vocab.Add("at", WT.PREPOSITION);
@@ -141,6 +143,7 @@ namespace Game04
             WordAndType wt = command[0];
             WordAndType wt2 = command[1];
             string s = "";
+            string cn = null;
             if (wt.Type != WT.VERB)
             {
                 s = $"Can't do this because '{wt.Word}' is not a command!";
@@ -315,6 +318,10 @@ namespace Game04
             {
                 strlist = new List<string>(inputstr.Split(delims, StringSplitOptions.RemoveEmptyEntries));
                 s = ParseCommand(strlist);
+                if (s == "")
+                {
+                    s = "I could not find the requested item.";
+                }
             }
             return s;
         }
