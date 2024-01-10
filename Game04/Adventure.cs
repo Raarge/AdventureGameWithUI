@@ -20,14 +20,19 @@ namespace Game04
             InitVocab();
             ThingList trollroomlist = new ThingList();
             ThingList forestlist = new ThingList();
+            ThingList limblist = new ThingList();
 
-            trollroomlist.Add(new Thing("carrot", "It is a very crunchy carrot"));
+            trollroomlist.Add(new Thing("rod", "A small wooden rod"));
 
-            forestlist.Add(new Thing("sausage", "It is a plump port sausage"));
+            limblist.Add(new Thing("acorn", "A small perfect acorn"));
             forestlist.Add(new Thing("tree", "It is a gigantic oak tree", false, false));
 
             /*
-            * 
+             *                Oak Trunk With Limb -- Limb
+             *                 ^
+             *                Oak Trunk
+             *                 ^
+            *                  |
             * Troll Room -- Forest
             *    |
             *  Cave  -----  Dungeon  
@@ -36,9 +41,12 @@ namespace Game04
             _map = new RoomList();
             /*                                                                                          N          S          W          E          */
             _map.Add(Rm.TrollRoom, new Room("Troll Room", "a dank, dark room that smells of troll", Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, Rm.Forest, trollroomlist));
-            _map.Add(Rm.Forest, new Room("Forest", "a light, airy forest shimmering with sunlight", Rm.NOEXIT, Rm.NOEXIT, Rm.TrollRoom, Rm.NOEXIT, forestlist));
+            _map.Add(Rm.Forest, new Room("Forest", "a light, airy forest shimmering with sunlight", Rm.NOEXIT, Rm.NOEXIT, Rm.TrollRoom, Rm.NOEXIT, Rm.OakTrunk, Rm.NOEXIT, forestlist));
             _map.Add(Rm.Cave, new Room("Cave", "a vast cave with walls covered by luminous moss", Rm.TrollRoom, Rm.NOEXIT, Rm.NOEXIT, Rm.Dungeon, new ThingList()));
             _map.Add(Rm.Dungeon, new Room("Dungeon", "a gloomy dungeon. Rats scurry across its floor", Rm.NOEXIT, Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, new ThingList()));
+            _map.Add(Rm.OakTrunk, new Room("Oak Trunk", "you are halfway up to the first limb of the oak", Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.OakTrunk2, Rm.Forest, new ThingList()));
+            _map.Add(Rm.OakTrunk2, new Room("Oak Trunk With Limb", "you are up to the first limb of the oak", Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.OakLimb, Rm.NOEXIT, Rm.OakTrunk, new ThingList()));
+            _map.Add(Rm.OakLimb, new Room("Oak Limb", "you are high off the ground", Rm.NOEXIT, Rm.NOEXIT, Rm.OakTrunk2, Rm.NOEXIT, limblist));
 
             _map[Rm.Cave].AddThing(new ContainerThing("sack", "a worn old sack", true, true, true, true, new ThingList()));
             _map[Rm.Cave].AddThing(new ContainerThing("box", "a wooden box", true, true, true, true, new ThingList()));

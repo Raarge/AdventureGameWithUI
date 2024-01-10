@@ -12,6 +12,9 @@ namespace Game04
         Forest,
         Cave,
         Dungeon,
+        OakTrunk,
+        OakTrunk2,
+        OakLimb,
         NOEXIT
     }
 
