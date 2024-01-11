@@ -43,4 +43,14 @@ namespace Game04
         UP,
         DOWN
     }
+
+    public enum WeapType
+    {
+        Dagger,
+        ShortSword,
+        Knife,
+        LongSword,
+        Mace,
+        Flail
+    }
 }

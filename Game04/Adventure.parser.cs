@@ -22,6 +22,7 @@ namespace Game04
             vocab.Add("cheese", WT.NOUN);
             vocab.Add("chest", WT.NOUN);
             vocab.Add("coin", WT.NOUN);
+            vocab.Add("dagger", WT.NOUN);
             vocab.Add("door", WT.NOUN);
             vocab.Add("dust", WT.NOUN);
             vocab.Add("gardenia", WT.NOUN);
@@ -30,6 +31,7 @@ namespace Game04
             vocab.Add("lamp", WT.NOUN);
             vocab.Add("leaflet", WT.NOUN);
             vocab.Add("lever", WT.NOUN);
+            vocab.Add("orb", WT.NOUN);
             vocab.Add("pearl", WT.NOUN);
             vocab.Add("rat", WT.NOUN);
             vocab.Add("rod", WT.NOUN);
@@ -47,6 +49,7 @@ namespace Game04
             vocab.Add("close", WT.VERB);
             vocab.Add("pull", WT.VERB);
             vocab.Add("push", WT.VERB);
+            vocab.Add("rub", WT.VERB);
             vocab.Add("n", WT.VERB);
             vocab.Add("s", WT.VERB);
             vocab.Add("w", WT.VERB);
@@ -174,6 +177,9 @@ namespace Game04
                         break;
                     case "push":
                         s = PushOb(wt2.Word);
+                        break;
+                    case "rub":
+                        s = RubOb(wt2.Word);
                         break;
                     default:
                         s = $"I don't know how to {wt.Word} a {wt2.Word}!";

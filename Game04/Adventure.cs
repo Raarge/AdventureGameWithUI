@@ -50,6 +50,9 @@ namespace Game04
 
             _map[Rm.Cave].AddThing(new ContainerThing("sack", "a worn old sack", true, true, true, true, new ThingList()));
             _map[Rm.Cave].AddThing(new ContainerThing("box", "a wooden box", true, true, true, true, new ThingList()));
+            _map[Rm.Dungeon].AddThing(new WeaponTreasure("dagger", "a tarnished dagger", true, true, true, true, WeapType.Dagger));
+            _map[Rm.Forest].AddThing(new Treasure("coin", "a tarnished coin with a faded image on it", true, true, true));
+            _map[Rm.Dungeon].AddThing(new MagicTreasure("orb", "a glowing orb that pulses", false, true, true, true));
 
             _player = new Actor("You", "The Player", _map.RoomAt(Rm.TrollRoom), new ThingList());
 
@@ -206,6 +209,26 @@ namespace Game04
             return new KeyValuePair<Thing, ThingList>(t, tl);
         }
 
+        private KeyValuePair<MagicTreasure, ThingList> MagObInContainerHere(string obname)
+        {
+            ContainerThing ct = null;
+            MagicTreasure t = null;
+            ThingList tl = null;
+            foreach (Thing ob in _player.Things)
+            {
+                if (ob is ContainerThing)
+                {
+                    ct = (ContainerThing)ob;
+                    if (ct.IsOpen)
+                    {
+                        tl = ct.Things;
+                        t = ct.Things.MagGetOb(obname);
+                    }
+                }
+            }
+            return new KeyValuePair<MagicTreasure, ThingList>(t, tl);
+        }
+
         private Thing ObHere(string obname)
         {
             // look for ob in current room and player's inventory
@@ -220,6 +243,25 @@ namespace Game04
             if (t == null)
             {
                 kv = ObInContainerHere(obname);
+                t = kv.Key;
+            }
+            return t;
+        }
+
+        private MagicTreasure MagObHere(string obname)
+        {
+            // look for ob in current room and player's inventory
+            // return ob if found, else return null
+            KeyValuePair<MagicTreasure, ThingList> kv;
+            MagicTreasure t = null;
+            t = _player.Location.Things.MagGetOb(obname);
+            if (t == null)
+            {
+                t = _player.Things.MagGetOb(obname);
+            }
+            if (t == null)
+            {
+                kv = MagObInContainerHere(obname);
                 t = kv.Key;
             }
             return t;
@@ -524,6 +566,40 @@ namespace Game04
             }
             return s;
         }
+
+        public string RubOb(string obname)
+        {
+            MagicTreasure t;
+            string s = "";
+            t = MagObHere(obname);
+            if (t == null)
+            {
+                s = $"There is no {obname} here!";
+            }
+            else
+            { 
+                if(t.IsMagical == true)
+                {
+                    switch (obname)
+                    {
+                        case "orb":
+                            s = $"\r\nAn {obname} flares to life you feel it tugging at your soul.\r\n";
+                            break;
+                        default:
+                            s = $"\r\nAn {obname} flares for a second but nothing happens.\r\n";
+                            break;
+                    }
+                }
+                else
+                {
+                    s = $"\r\nYou rub {obname} but nothing seems to happen.\r\n";
+                }
+                
+
+            }
+            return s;
+        }
+
 
         public string Look()
         {

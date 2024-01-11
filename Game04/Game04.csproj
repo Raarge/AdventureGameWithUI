@@ -58,10 +58,13 @@
     </Compile>
     <Compile Include="gameclasses\Actor.cs" />
     <Compile Include="gameclasses\ContainerThing.cs" />
+    <Compile Include="gameclasses\MagicTreasure.cs" />
     <Compile Include="gameclasses\RoomList.cs" />
     <Compile Include="gameclasses\Thing.cs" />
     <Compile Include="gameclasses\ThingHolder.cs" />
     <Compile Include="gameclasses\ThingList.cs" />
+    <Compile Include="gameclasses\Treasure.cs" />
+    <Compile Include="gameclasses\WeaponTreasure.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="gameclasses\Room.cs" />
