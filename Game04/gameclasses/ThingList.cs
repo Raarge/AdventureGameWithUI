@@ -64,23 +64,25 @@ namespace Game04.gameclasses
         public MagicTreasure MagGetOb(string aName)
         {
 
-            // fix problem with nonmagical or other treasures in room when rub is initiated
-
-            Thing anotherThing = null;
+            Thing t = null;
             MagicTreasure athing = null;
             string thingName = "";
             string aNameLowCase = aName.Trim().ToLower();
-
-            foreach (MagicTreasure t in this)
+            foreach (Thing th in this)
             {
-                thingName = t.Name.Trim().ToLower();
-                if (thingName.Equals(aNameLowCase))
-                {
-                    athing = t;
-                }
+               if(th is MagicTreasure)
+               {
+                    
+                        thingName = th.Name.Trim().ToLower();
+                        if (thingName.Equals(aNameLowCase))
+                        {
+                            athing = (MagicTreasure) th;
+                        }
+                    
+               }
+                                
             }
-
-
+            
             return athing;
         }
     }

@@ -574,7 +574,7 @@ namespace Game04
             t = MagObHere(obname);
             if (t == null)
             {
-                s = $"There is no {obname} here!";
+                s = $"\r\nYou rub and prod at a {obname}.\r\n";
             }
             else
             { 
