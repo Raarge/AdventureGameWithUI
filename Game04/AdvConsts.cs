@@ -15,6 +15,10 @@ namespace Game04
         OakTrunk,
         OakTrunk2,
         OakLimb,
+        RopeBridge,
+        RopeBridgeEnd,
+        RopeLadder,
+        SecretClearing,
         NOEXIT
     }
 

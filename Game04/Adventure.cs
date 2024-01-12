@@ -28,25 +28,35 @@ namespace Game04
             forestlist.Add(new Thing("tree", "It is a gigantic oak tree", false, false));
 
             /*
-             *                Oak Trunk With Limb -- Limb
-             *                 ^
-             *                Oak Trunk
-             *                 ^
-            *                  |
+             *                Oak Trunk With Limb -- Limb -- Rope Bridge -- end of rope bridge
+             *                 ^                                                   d
+             *                Oak Trunk                                            |
+             *                 ^                                                   ^
+            *                  |                                            Secret Clearing
             * Troll Room -- Forest
             *    |
             *  Cave  -----  Dungeon  
             * */
 
             _map = new RoomList();
-            /*                                                                                          N          S          W          E          */
+            /*                                                                                          N          S          W          E    up   down     */
             _map.Add(Rm.TrollRoom, new Room("Troll Room", "a dank, dark room that smells of troll", Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, Rm.Forest, trollroomlist));
             _map.Add(Rm.Forest, new Room("Forest", "a light, airy forest shimmering with sunlight", Rm.NOEXIT, Rm.NOEXIT, Rm.TrollRoom, Rm.NOEXIT, Rm.OakTrunk, Rm.NOEXIT, forestlist));
             _map.Add(Rm.Cave, new Room("Cave", "a vast cave with walls covered by luminous moss", Rm.TrollRoom, Rm.NOEXIT, Rm.NOEXIT, Rm.Dungeon, new ThingList()));
             _map.Add(Rm.Dungeon, new Room("Dungeon", "a gloomy dungeon. Rats scurry across its floor", Rm.NOEXIT, Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, new ThingList()));
             _map.Add(Rm.OakTrunk, new Room("Oak Trunk", "you are halfway up to the first limb of the oak", Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.OakTrunk2, Rm.Forest, new ThingList()));
             _map.Add(Rm.OakTrunk2, new Room("Oak Trunk With Limb", "you are up to the first limb of the oak", Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.OakLimb, Rm.NOEXIT, Rm.OakTrunk, new ThingList()));
-            _map.Add(Rm.OakLimb, new Room("Oak Limb", "you are high off the ground", Rm.NOEXIT, Rm.NOEXIT, Rm.OakTrunk2, Rm.NOEXIT, limblist));
+            _map.Add(Rm.OakLimb, new Room("Oak Limb", "you are high off the ground", Rm.NOEXIT, Rm.NOEXIT, Rm.OakTrunk2, Rm.RopeBridge, limblist));
+            _map.Add(Rm.RopeBridge, new Room("Vine Rope Bridge", "a winding vine bridge through the tree tops", Rm.NOEXIT, Rm.NOEXIT, Rm.OakLimb, Rm.RopeBridgeEnd, Rm.NOEXIT, 
+                Rm.NOEXIT, new ThingList()));
+            _map.Add(Rm.RopeBridgeEnd, new Room("End of the Rope Bridge", "you have reached the end of the rope bridge, there is a exit onto the tree here",
+                Rm.NOEXIT, Rm.NOEXIT, Rm.RopeBridge, Rm.NOEXIT, Rm.NOEXIT, Rm.RopeLadder, new ThingList()));
+            _map.Add(Rm.RopeLadder, new Room("Rope Ladder", "a rope ladder extends down through the canopy", Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT,
+                Rm.RopeBridgeEnd, Rm.SecretClearing, new ThingList()));
+            _map.Add(Rm.SecretClearing, new Room("Secret Clearing", "you see before you a magical clearing with the suns rays peeking through the canopy",
+                Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.RopeLadder, Rm.NOEXIT,  new ThingList()));
+
+
 
             _map[Rm.Cave].AddThing(new ContainerThing("sack", "a worn old sack", true, true, true, true, new ThingList()));
             _map[Rm.Cave].AddThing(new ContainerThing("box", "a wooden box", true, true, true, true, new ThingList()));
@@ -144,22 +154,22 @@ namespace Game04
                 temp = s + ", ";
                 s = temp;
             }
-            if (room.E != Rm.NOEXIT)
-            {
-                temp = "East";
-                s = s + temp;
-            }
-            if (s == "East")
-            {
-                temp = s + ", ";
-                s = temp;
-            }
             if (room.W != Rm.NOEXIT)
             {
                 temp = "West";
                 s = s + temp;
             }
             if (s == "West")
+            {
+                temp = s + ", ";
+                s = temp;
+            }
+            if (room.E != Rm.NOEXIT)
+            {
+                temp = "East";
+                s = s + temp;
+            }
+            if (s == "East")
             {
                 temp = s + ", ";
                 s = temp;
@@ -177,7 +187,7 @@ namespace Game04
             if (room.Down != Rm.NOEXIT)
             {
                 temp = "Down";
-                s = temp;
+                s = s + temp;
             }
             return s;
 

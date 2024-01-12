@@ -130,22 +130,22 @@ namespace Game04
                 temp = s + ", ";
                 s = temp;
             }
-            if (room.E != Rm.NOEXIT)
-            {
-                temp = "East";
-                s = s + temp;
-            }
-            if (s == "East")
-            {
-                temp = s + ", ";
-                s = temp;
-            }
             if (room.W != Rm.NOEXIT)
             {
                 temp = "West";
                 s = s + temp;
             }
             if (s == "West")
+            {
+                temp = s + ", ";
+                s = temp;
+            }
+            if (room.E != Rm.NOEXIT)
+            {
+                temp = "East";
+                s = s + temp;
+            }
+            if (s == "East")
             {
                 temp = s + ", ";
                 s = temp;
