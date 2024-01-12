@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Game04.gameclasses
 {
+    [Serializable]
     public class Treasure : Thing
     {
         private bool _isTreasure;

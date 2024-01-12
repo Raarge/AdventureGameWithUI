@@ -428,7 +428,7 @@ namespace Game04
                     s = t.Description + "contains: \r\n";
                     foreach (Thing t2 in t.Things)
                     {
-                        temp = temp + t2.Name + ", " + t2.Description + "\r\n";
+                        temp = temp + t2.Name + "\r\n";
                     }
                     s = s + temp;
                 }

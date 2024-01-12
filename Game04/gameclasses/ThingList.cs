@@ -22,7 +22,7 @@ namespace Game04.gameclasses
             {
                 foreach (Thing t in this)
                 {
-                    s = s + t.Name + ". " + t.Description + "; ";
+                    s = s + t.Name + ". ";
                 }
             }
             return s;
