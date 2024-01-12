@@ -38,9 +38,10 @@ namespace Game04
             outputTB.Text = $"Welcome to the Great Adventure!\r\n";
             outputTB.AppendText($"You are in the {adv.Player.Location.Name}.");
             outputTB.AppendText($"It is {adv.Player.Location.Description}\r\n");
-            outputTB.AppendText($"Exits: {getExits(adv.Player.Location)}\r\n");
+            //outputTB.AppendText($"Exits: {getExits(adv.Player.Location)}\r\n");
             outputTB.AppendText("Where do you want to go now?\r\n");
             outputTB.AppendText("Click a direction button: North, South, West or East.\r\n");
+            exitsTB.Text = getExits(adv.Player.Location);
             ShowLocation();
         }
 
@@ -79,6 +80,7 @@ namespace Game04
         {
             outputTB.Text = adv.MovePlayerTo(direction);
             roomnameTB.Text = adv.Player.Location.Name;
+            exitsTB.Text = getExits(adv.Player.Location);
 
         }
 

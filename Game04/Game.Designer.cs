@@ -55,6 +55,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmdTB = new System.Windows.Forms.TextBox();
             this.cmdBtn = new System.Windows.Forms.Button();
+            this.exitsTB = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -119,7 +122,7 @@
             // 
             // roomnameTB
             // 
-            this.roomnameTB.Location = new System.Drawing.Point(46, 42);
+            this.roomnameTB.Location = new System.Drawing.Point(46, 52);
             this.roomnameTB.Name = "roomnameTB";
             this.roomnameTB.Size = new System.Drawing.Size(146, 20);
             this.roomnameTB.TabIndex = 6;
@@ -287,11 +290,39 @@
             this.cmdBtn.UseVisualStyleBackColor = true;
             this.cmdBtn.Click += new System.EventHandler(this.cmdBtn_Click);
             // 
+            // exitsTB
+            // 
+            this.exitsTB.Location = new System.Drawing.Point(212, 52);
+            this.exitsTB.Name = "exitsTB";
+            this.exitsTB.Size = new System.Drawing.Size(166, 20);
+            this.exitsTB.TabIndex = 17;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(43, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Location Name";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(209, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Exits";
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 516);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.exitsTB);
             this.Controls.Add(this.cmdBtn);
             this.Controls.Add(this.cmdTB);
             this.Controls.Add(this.label1);
@@ -347,6 +378,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox cmdTB;
         private System.Windows.Forms.Button cmdBtn;
+        private System.Windows.Forms.TextBox exitsTB;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 

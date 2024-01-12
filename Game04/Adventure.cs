@@ -121,11 +121,11 @@ namespace Game04
 
             if (MoveTo(_player, direction) == Rm.NOEXIT)
             {
-                s = $"There is no exit in that direction\r\n You are still in {_player.Location.Name}\r\n Exits: {getExits(_player.Location)}";
+                s = $"There is no exit in that direction\r\n You are still in {_player.Location.Name}\r\n ";
             }
             else
             {
-                s = $"You are now in the {_player.Location.Name}\r\n{_player.Location.Describe()}\r\nExits: {getExits(_player.Location)}";
+                s = $"You are now in the {_player.Location.Name}\r\n{_player.Location.Describe()}\r\n";
             }
             return s;
         }
