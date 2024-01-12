@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -194,6 +195,7 @@ namespace Game04
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string s = "";
             Close();
         }
 
@@ -213,6 +215,8 @@ namespace Game04
                 }
             }
             outputTB.Clear();
+            roomnameTB.Text = adv.Player.Location.Name;
+            exitsTB.Text = getExits(adv.Player.Location);
             ShowLocation();
         }
 
