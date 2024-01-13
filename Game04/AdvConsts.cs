@@ -11,6 +11,7 @@ namespace Game04
         TrollRoom,
         Forest,
         Cave,
+        DarkForest,
         Dungeon,
         OakTrunk,
         OakTrunk2,
@@ -56,5 +57,12 @@ namespace Game04
         LongSword,
         Mace,
         Flail
+    }
+
+    public enum WeapDmgType
+    {
+        Pierce,
+        Slash,
+        Blunt
     }
 }

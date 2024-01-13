@@ -12,22 +12,23 @@ namespace Game04
     {
         public RoomList InitMap(RoomList _map)
         {
-           
+
             /*
-            *                Oak Trunk With Limb -- Limb -- Rope Bridge -- end of rope bridge
-            *                 ^                                                   d
-            *                Oak Trunk                                            |
-            *                 ^                                                   ^
-           *                  |                                            Secret Clearing
-           * Troll Room -- Forest
+            *                            Oak Trunk With Limb -- Limb -- Rope Bridge -- end of rope bridge
+            *                               d                                                   d
+            *                               ^                                                   ^
+            *                            Oak Trunk                                     Secret Clearing       
+            *                               d                                           
+           *                                ^                                           
+           * Troll Room -- Dark Forest - Forest
            *    |
            *  Cave  -----  Dungeon  
            * */
 
             _map = new RoomList();
             /*                                                                                          N          S          W          E    up   down     */
-            _map.Add(Rm.TrollRoom, new Room("Troll Room", "a dank, dark room that smells of troll", Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, Rm.Forest, new ThingList()));
-            _map.Add(Rm.Forest, new Room("Forest", "a light, airy forest shimmering with sunlight", Rm.NOEXIT, Rm.NOEXIT, Rm.TrollRoom, Rm.NOEXIT, Rm.OakTrunk, Rm.NOEXIT, new ThingList()));
+            _map.Add(Rm.TrollRoom, new Room("Troll Hole", "a dank, dark hole that smells of troll. You see a cave to the south", Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, Rm.DarkForest, new ThingList()));
+            _map.Add(Rm.Forest, new Room("Forest", "a light, airy forest shimmering with sunlight", Rm.NOEXIT, Rm.NOEXIT, Rm.DarkForest, Rm.NOEXIT, Rm.OakTrunk, Rm.NOEXIT, new ThingList()));
             _map.Add(Rm.Cave, new Room("Cave", "a vast cave with walls covered by luminous moss", Rm.TrollRoom, Rm.NOEXIT, Rm.NOEXIT, Rm.Dungeon, new ThingList()));
             _map.Add(Rm.Dungeon, new Room("Dungeon", "a gloomy dungeon. Rats scurry across its floor", Rm.NOEXIT, Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, new ThingList()));
             _map.Add(Rm.OakTrunk, new Room("Oak Trunk", "you are halfway up to the first limb of the oak", Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.OakTrunk2, Rm.Forest, new ThingList()));
@@ -41,13 +42,14 @@ namespace Game04
                 Rm.RopeBridgeEnd, Rm.SecretClearing, new ThingList()));
             _map.Add(Rm.SecretClearing, new Room("Secret Clearing", "you see before you a magical clearing with the suns rays peeking through the canopy",
                 Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.RopeLadder, Rm.NOEXIT, new ThingList()));
+            _map.Add(Rm.DarkForest, new Room("Dark Forrest", "a deep dark forboding forrest surrounds yout", Rm.NOEXIT, Rm.NOEXIT, Rm.TrollRoom, Rm.Forest, new ThingList()));
 
             _map[Rm.TrollRoom].AddThing(new Thing("rod", "A small wooden rod"));
             _map[Rm.OakLimb].AddThing(new Thing("acorn", "A small perfect acorn"));
             _map[Rm.Forest].AddThing(new Thing("tree", "It is a gigantic oak tree", false, false));
             _map[Rm.Cave].AddThing(new ContainerThing("sack", "a worn old sack", true, true, true, true, new ThingList()));
             _map[Rm.Cave].AddThing(new ContainerThing("box", "a wooden box", true, true, true, true, new ThingList()));
-            _map[Rm.Dungeon].AddThing(new WeaponTreasure("dagger", "a tarnished dagger", true, true, true, true, WeapType.Dagger));
+            _map[Rm.Dungeon].AddThing(new WeaponTreasure("dagger", "a tarnished dagger", true, true, true, true, WeapType.Dagger, 2, WeapDmgType.Pierce));
             _map[Rm.Forest].AddThing(new Treasure("coin", "a tarnished coin with a faded image on it", true, true, true));
             _map[Rm.Dungeon].AddThing(new MagicTreasure("orb", "a glowing orb that pulses", false, true, true, true));
 

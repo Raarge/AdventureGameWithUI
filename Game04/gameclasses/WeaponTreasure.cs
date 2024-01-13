@@ -11,12 +11,16 @@ namespace Game04.gameclasses
     {
         private bool _isWeapon;
         private WeapType _aType;
+        private int _aDamage;
+        private WeapDmgType _aDmgType;
 
-        public WeaponTreasure(string aName, string aDescription, bool aCantake, bool isMoveable, bool isTreasure, bool isWeapon, WeapType aType) : 
+        public WeaponTreasure(string aName, string aDescription, bool aCantake, bool isMoveable, bool isTreasure, bool isWeapon, WeapType aType, int aDamage, WeapDmgType aDmgType) : 
             base(aName, aDescription, aCantake, isMoveable, isTreasure)
         {
             _aType = aType;
             _isWeapon = isWeapon;
+            _aDamage = aDamage;
+            _aDmgType = aDmgType;
         }
 
         public bool IsWeapon
@@ -29,6 +33,18 @@ namespace Game04.gameclasses
         {
             get => _aType;
             set => _aType = value;
+        }
+
+        public int ADamage
+        {
+            get => _aDamage;
+            set => _aDamage = value;
+        }
+
+        public WeapDmgType ADmgType
+        {
+            get => _aDmgType;
+            set => _aDmgType= value;
         }
         
         public override string Describe()
