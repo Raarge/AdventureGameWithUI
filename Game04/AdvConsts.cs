@@ -11,16 +11,21 @@ namespace Game04
         TrollRoom,
         Forest,
         Cave,
+        DarkEntrance,
         DarkForest,
         Dungeon,
         HoleEntrance,
         OakTrunk,
         OakTrunk2,
         OakLimb,
+        Passage,
         RopeBridge,
         RopeBridgeEnd,
+        RootCellar,
         RopeLadder,
         SecretClearing,
+        SleepingChamber,
+        SmallTunnel,
         NOEXIT
     }
 

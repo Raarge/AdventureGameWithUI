@@ -133,12 +133,22 @@ namespace Game04
                 temp = s + ", ";
                 s = temp;
             }
+            else 
+            {
+                temp = s + ", ";
+                s = temp;
+            }
             if (room.W != Rm.NOEXIT)
             {
                 temp = "West";
                 s = s + temp;
             }
             if (s == "West")
+            {
+                temp = s + ", ";
+                s = temp;
+            }
+            else
             {
                 temp = s + ", ";
                 s = temp;
@@ -153,6 +163,11 @@ namespace Game04
                 temp = s + ", ";
                 s = temp;
             }
+            else
+            {
+                temp = s + ", ";
+                s = temp;
+            }
             if (room.Up != Rm.NOEXIT)
             {
                 temp = "Up";
@@ -163,10 +178,22 @@ namespace Game04
                 temp = s + ", ";
                 s = temp;
             }
+            else
+            {
+                
+                temp = s + ", ";
+                s = temp;
+                
+            }
             if (room.Down != Rm.NOEXIT)
             {
                 temp = "Down";
                 s = s + temp;
+            }
+            if (s == "Down")
+            {
+                temp = s + ", ";
+                s = temp;
             }
             return s;
 

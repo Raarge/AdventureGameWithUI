@@ -111,12 +111,22 @@ namespace Game04
                 temp = s + ", ";
                 s = temp;
             }
+            else 
+            {
+                temp = s + ", ";
+                s = temp;
+            }
             if (room.W != Rm.NOEXIT)
             {
                 temp = "West";
                 s = s + temp;
             }
             if (s == "West")
+            {
+                temp = s + ", ";
+                s = temp;
+            }
+            else
             {
                 temp = s + ", ";
                 s = temp;
@@ -131,6 +141,11 @@ namespace Game04
                 temp = s + ", ";
                 s = temp;
             }
+            else
+            {
+                temp = s + ", ";
+                s = temp;
+            }
             if (room.Up != Rm.NOEXIT)
             {
                 temp = "Up";
@@ -141,10 +156,20 @@ namespace Game04
                 temp = s + ", ";
                 s = temp;
             }
+            else
+            {
+                temp = s + ", ";
+                s = temp;
+            }
             if (room.Down != Rm.NOEXIT)
             {
                 temp = "Down";
                 s = s + temp;
+            }
+            if (s == "Down")
+            {
+                temp = s + ", ";
+                s = temp;
             }
             return s;
 
@@ -541,7 +566,7 @@ namespace Game04
             t = MagObHere(obname);
             if (t == null)
             {
-                s = $"\r\nYou rub and prod at a {obname}.\r\n";
+                s = $"\r\nYou rub and prod at a {obname} to no avail.\r\n";
             }
             else
             { 
@@ -550,10 +575,10 @@ namespace Game04
                     switch (obname)
                     {
                         case "orb":
-                            s = $"\r\nAn {obname} flares to life you feel it tugging at your soul.\r\n";
+                            s = $"\r\nAs you rub an {obname}, it flares to life you feel it tugging at your soul.\r\n";
                             break;
                         default:
-                            s = $"\r\nAn {obname} flares for a second but nothing happens.\r\n";
+                            s = $"\r\nAs you rub an {obname} flares for a second but nothing happens.\r\n";
                             break;
                     }
                 }
