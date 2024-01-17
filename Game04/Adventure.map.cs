@@ -15,19 +15,19 @@ namespace Game04
 
             /*
             *                            Oak Trunk With Limb -- Limb -- Rope Bridge -- end of rope bridge
-            *                               d                                                   d
-            *                               ^                                                   ^
+            *                                 d                                                 d
+            *                                 ^                                                 ^
             *                            Oak Trunk                                     Secret Clearing       
-            *                               d                                           
-           *                                ^                                           
-           * Troll Room -- Dark Forest - Forest
+            *                                 d                                           
+           *                                  ^                                           
+           * Troll Hole -- Hole Entrance -- Dark Forest - Forest
            *    |
            *  Cave  -----  Dungeon  
            * */
 
             _map = new RoomList();
             /*                                                                                          N          S          W          E    up   down     */
-            _map.Add(Rm.TrollRoom, new Room("Troll Hole", "a dank, dark hole that smells of troll. You see a cave to the south", Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, Rm.DarkForest, new ThingList()));
+            _map.Add(Rm.TrollRoom, new Room("Troll Hole", "a dank, dark hole that smells of troll. You see a cave to the south", Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, Rm.HoleEntrance, new ThingList()));
             _map.Add(Rm.Forest, new Room("Forest", "a light, airy forest shimmering with sunlight", Rm.NOEXIT, Rm.NOEXIT, Rm.DarkForest, Rm.NOEXIT, Rm.OakTrunk, Rm.NOEXIT, new ThingList()));
             _map.Add(Rm.Cave, new Room("Cave", "a vast cave with walls covered by luminous moss", Rm.TrollRoom, Rm.NOEXIT, Rm.NOEXIT, Rm.Dungeon, new ThingList()));
             _map.Add(Rm.Dungeon, new Room("Dungeon", "a gloomy dungeon. Rats scurry across its floor", Rm.NOEXIT, Rm.NOEXIT, Rm.Cave, Rm.NOEXIT, new ThingList()));
@@ -42,7 +42,8 @@ namespace Game04
                 Rm.RopeBridgeEnd, Rm.SecretClearing, new ThingList()));
             _map.Add(Rm.SecretClearing, new Room("Secret Clearing", "you see before you a magical clearing with the suns rays peeking through the canopy",
                 Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.RopeLadder, Rm.NOEXIT, new ThingList()));
-            _map.Add(Rm.DarkForest, new Room("Dark Forrest", "a deep dark forboding forrest surrounds yout", Rm.NOEXIT, Rm.NOEXIT, Rm.TrollRoom, Rm.Forest, new ThingList()));
+            _map.Add(Rm.DarkForest, new Room("Dark Forest", "a deep dark forboding forest surrounds you", Rm.NOEXIT, Rm.NOEXIT, Rm.HoleEntrance, Rm.Forest, new ThingList()));
+            _map.Add(Rm.HoleEntrance, new Room("Entrance to a Hole", "a hole is here in the side of an embankment", Rm.NOEXIT, Rm.NOEXIT, Rm.TrollRoom, Rm.DarkForest, new ThingList()));
 
             _map[Rm.TrollRoom].AddThing(new Thing("rod", "A small wooden rod"));
             _map[Rm.OakLimb].AddThing(new Thing("acorn", "A small perfect acorn"));

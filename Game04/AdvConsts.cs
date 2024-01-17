@@ -13,6 +13,7 @@ namespace Game04
         Cave,
         DarkForest,
         Dungeon,
+        HoleEntrance,
         OakTrunk,
         OakTrunk2,
         OakLimb,
