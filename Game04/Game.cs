@@ -113,6 +113,7 @@ namespace Game04
         {
             string s = "";
             string temp = "";
+            bool flag = false;
 
             if (room.N != Rm.NOEXIT)
             {
@@ -120,7 +121,7 @@ namespace Game04
             }
             if (s == "North")
             {
-                temp = s + ", ";
+                temp = s + " ";
                 s = temp;
             }
             if (room.S != Rm.NOEXIT)
@@ -130,12 +131,16 @@ namespace Game04
             }
             if (s == "South")
             {
-                temp = s + ", ";
+                temp = s + " ";
                 s = temp;
             }
-            else 
+            else if (s.EndsWith(" "))
             {
-                temp = s + ", ";
+
+            }
+            else
+            {
+                temp = s + " ";
                 s = temp;
             }
             if (room.W != Rm.NOEXIT)
@@ -145,12 +150,17 @@ namespace Game04
             }
             if (s == "West")
             {
-                temp = s + ", ";
+                temp = s + " ";
                 s = temp;
+                
+            }
+            else if (s.EndsWith(" "))
+            {
+                flag = false;
             }
             else
             {
-                temp = s + ", ";
+                temp = s + " ";
                 s = temp;
             }
             if (room.E != Rm.NOEXIT)
@@ -160,12 +170,16 @@ namespace Game04
             }
             if (s == "East")
             {
-                temp = s + ", ";
+                temp = s + " ";
                 s = temp;
+            }
+            else if (s.EndsWith(" "))
+            {
+
             }
             else
             {
-                temp = s + ", ";
+                temp = s + " ";
                 s = temp;
             }
             if (room.Up != Rm.NOEXIT)
@@ -175,13 +189,17 @@ namespace Game04
             }
             if (s == "Up")
             {
-                temp = s + ", ";
+                temp = s + " ";
                 s = temp;
+            }
+            else if (s.EndsWith(" "))
+            {
+
             }
             else
             {
                 
-                temp = s + ", ";
+                temp = s + " ";
                 s = temp;
                 
             }
@@ -192,7 +210,7 @@ namespace Game04
             }
             if (s == "Down")
             {
-                temp = s + ", ";
+                temp = s + " ";
                 s = temp;
             }
             return s;

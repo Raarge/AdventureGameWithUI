@@ -63,6 +63,7 @@ namespace Game04
             _map[Rm.Dungeon].AddThing(new WeaponTreasure("dagger", "a tarnished dagger", true, true, true, true, WeapType.Dagger, 2, WeapDmgType.Pierce));
             _map[Rm.Forest].AddThing(new Treasure("coin", "a tarnished coin with a faded image on it", true, true, true));
             _map[Rm.Dungeon].AddThing(new MagicTreasure("orb", "a glowing orb that pulses", false, true, true, true));
+            _map[Rm.RootCellar].AddThing(new Lockpick("lockpick", "the well worn lockpick is battered and wavy", true, true, true, LPQuality.Bent, 3));
 
             return _map;
         }

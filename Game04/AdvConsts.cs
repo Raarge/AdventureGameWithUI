@@ -71,4 +71,19 @@ namespace Game04
         Slash,
         Blunt
     }
+
+    public enum LPQuality
+    {
+        Dismal,
+        Poor,
+        Bent,
+        Fair,
+        Standard,
+        Quality,
+        Trick,
+        Special,
+        HighQuality,
+        Grandmaster
+
+    }
 }
