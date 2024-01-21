@@ -12,14 +12,27 @@ namespace Game04.gameclasses
         private bool _worksOnLocks;
         private LPQuality _lpQ;
         private int _grade;
+        private int _durab;
+        private int lphp;  //TO DO ** add methods to determing hp of the pick for breaking
 
-        public Lockpick(string aName, string aDescription, bool aCantake, bool isMoveable, bool aWorkOnLocks, LPQuality aLpq, int aGrade) :
+        public Lockpick(string aName, string aDescription, bool aCantake, bool isMoveable, bool aWorkOnLocks, LPQuality aLpq, int aGrade, int aDurab) :
             base(aName, aDescription, aCantake, isMoveable)
         {
             _worksOnLocks = aWorkOnLocks;
             _lpQ = aLpq;
             _grade = aGrade;
+            _durab = aDurab;
 
+        }
+
+        public void CanWorkOnLocks()
+        {
+            _worksOnLocks = true;
+        }
+
+        public void CanNotWorkOnLocks()
+        {
+            _worksOnLocks = false;
         }
 
         public bool WorksOnLocks
@@ -38,6 +51,12 @@ namespace Game04.gameclasses
         {
             get => _grade;
             set => _grade = value;
+        }
+
+        public int Durab
+        {
+            get => _durab;
+            set => _durab = value;
         }
 
         public override string Describe()

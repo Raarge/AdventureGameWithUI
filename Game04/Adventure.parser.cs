@@ -34,6 +34,7 @@ namespace Game04
             vocab.Add("lockpick", WT.NOUN);
             vocab.Add("orb", WT.NOUN);
             vocab.Add("pearl", WT.NOUN);
+            vocab.Add("quartz", WT.NOUN);
             vocab.Add("rat", WT.NOUN);
             vocab.Add("rod", WT.NOUN);
             vocab.Add("sack", WT.NOUN);
@@ -158,7 +159,7 @@ namespace Game04
                 s = $"Can't do this because '{wt2.Word}' is not an object!";
             }
             else
-            {
+            {     ////****To Do ***** add appraise for gems
                 switch (wt.Word)
                 {
                     case "take":

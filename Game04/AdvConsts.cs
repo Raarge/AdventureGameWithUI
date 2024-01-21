@@ -86,4 +86,22 @@ namespace Game04
         Grandmaster
 
     }
+
+    public enum GemSz
+    {
+        Tiny,
+        Small,
+        Medium,
+        Large,
+        Humongus
+    }
+
+    public enum GemType
+    {
+        Quartz,
+        Garnet,
+        Saphire,
+        Diamond,
+        Hematite
+    }
 }
