@@ -280,22 +280,46 @@ namespace Game04
             string s = "";
             if (!t.Openable)
             {
+                
                 s = $"Can't open the {t.Name}";
             }
             else
-            {
-                if (t.IsOpen)
+            {                
+                LockboxContThing test = t as LockboxContThing;
+                if (test != null)
                 {
-                    s = $"The {t.Name} is already open.";
+
+                    if (test.IsLocked == true)
+                    {
+                        s = $"Cant open the {t.Name}, it is locked.";
+                    }
+                    else if (test.IsLocked == false && test.IsOpen == true)
+                    {
+                        s = $"Can't open the {t.Name} because it is already open.";
+                    }
+                    else if (test.IsLocked == false && test.IsOpen == false)
+                    {
+                        s = $"You slowly open the {t.Name} now that the lock is unlocked.";
+                    }
                 }
                 else
                 {
-                    t.IsOpen = true;
-                    s = $"You open the {t.Name}";
+                    if (t.IsOpen)
+                    {
+                        s = $"The {t.Name} is already open.";
+                    }
+                    else
+                    {
+                        t.IsOpen = true;
+                        s = $"You open the {t.Name}";
+                    }
                 }
+             
+                    
             }
             return s;
-        }
+
+            }
 
         private string TryToClose(ContainerThing t)
         {
@@ -410,7 +434,7 @@ namespace Game04
             {
                 s = "You'll have to say what you want to look into!";
             }
-            else
+            else 
             {
                 t = (ContainerThing)_player.Location.Things.ThisOb(obname);
                 if (t == null)
@@ -421,16 +445,48 @@ namespace Game04
                 {
                     s = "There is no " + obname + " here!";
                 }
-                else
+                else 
                 {
-                    s = t.Description + "contains: \r\n";
-                    foreach (Thing t2 in t.Things)
+                    LockboxContThing lb = t as LockboxContThing;
+                    if (lb == null)
                     {
-                        temp = temp + t2.Name + "\r\n";
+                        if (t.IsOpen == true)
+                        {
+                            s = t.Description + "contains: \r\n";
+                            foreach (Thing t2 in t.Things)
+                            {
+                                temp = temp + t2.Name + "\r\n";
+                            }
+                            s = s + temp;
+                        }
+                        else
+                        {
+                            s = $"You'll need to open the {t.Name} to look inside.";
+                        }
                     }
-                    s = s + temp;
+                    else
+                    {
+                        if(lb.IsLocked == true)
+                        {
+                            s = $"You cannot see into a {t.Name} it is locked.";
+                        }
+                        else if (lb.IsOpen == false)
+                        {
+                            s = $"You cannot see into a {t.Name}, it is unlocked but closed. Try opening it.";
+                        }
+                        else
+                        {
+                            s = t.Description + "contains: \r\n";
+                            foreach (Thing t2 in t.Things)
+                            {
+                                temp = temp + t2.Name + "\r\n";
+                            }
+                            s = s + temp;
+                        }
+                    }
                 }
             }
+            
             return s;
         }
 

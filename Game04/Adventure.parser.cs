@@ -26,11 +26,13 @@ namespace Game04
             vocab.Add("door", WT.NOUN);
             vocab.Add("dust", WT.NOUN);
             vocab.Add("gardenia", WT.NOUN);
+            vocab.Add("hematite", WT.NOUN) ;
             vocab.Add("key", WT.NOUN);
             vocab.Add("knife", WT.NOUN);
             vocab.Add("lamp", WT.NOUN);
             vocab.Add("leaflet", WT.NOUN);
             vocab.Add("lever", WT.NOUN);
+            vocab.Add("lockbox", WT.NOUN) ;
             vocab.Add("lockpick", WT.NOUN);
             vocab.Add("orb", WT.NOUN);
             vocab.Add("pearl", WT.NOUN);

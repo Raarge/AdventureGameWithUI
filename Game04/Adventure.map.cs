@@ -55,6 +55,9 @@ namespace Game04
             _map.Add(Rm.SleepingChamber, new Room("Sleeping Chamber", "a dingy chamber, apparently used for sleeping and smells of troll", Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT, Rm.NOEXIT,
                 Rm.NOEXIT, Rm.SmallTunnel, new ThingList()));
 
+            ThingList lbList = new ThingList();
+            lbList.Add(new GemTreasure("hematite", "a tiny hematite", true, true, true, GemSz.Tiny, GemType.Hematite));
+
             _map[Rm.TrollRoom].AddThing(new Thing("rod", "A small wooden rod"));
             _map[Rm.OakLimb].AddThing(new Thing("acorn", "A small perfect acorn"));
             _map[Rm.Forest].AddThing(new Thing("tree", "It is a gigantic oak tree", false, false));
@@ -65,6 +68,9 @@ namespace Game04
             _map[Rm.Dungeon].AddThing(new MagicTreasure("orb", "a glowing orb that pulses", false, true, true, true));
             _map[Rm.RootCellar].AddThing(new Lockpick("lockpick", "the well worn lockpick is battered and wavy", true, true, true, LPQuality.Bent, 3, 6));
             _map[Rm.SleepingChamber].AddThing(new GemTreasure("quartz", "a very tiny piece of quartz", true, true, true, GemSz.Tiny, GemType.Quartz));
+            _map[Rm.SleepingChamber].AddThing(new LockboxContThing("lockbox", "a beat up lockbox", true, true, true, false, lbList, true, true, 2, 1));
+
+            
             return _map;
         }
     }
