@@ -300,6 +300,7 @@ namespace Game04
                     else if (test.IsLocked == false && test.IsOpen == false)
                     {
                         s = $"You slowly open the {t.Name} now that the lock is unlocked.";
+                        test.Open();
                     }
                 }
                 else
@@ -452,7 +453,7 @@ namespace Game04
                     {
                         if (t.IsOpen == true)
                         {
-                            s = t.Description + "contains: \r\n";
+                            s = t.Description + " contains: \r\n";
                             foreach (Thing t2 in t.Things)
                             {
                                 temp = temp + t2.Name + "\r\n";
@@ -476,7 +477,7 @@ namespace Game04
                         }
                         else
                         {
-                            s = t.Description + "contains: \r\n";
+                            s = t.Description + " contains: \r\n";
                             foreach (Thing t2 in t.Things)
                             {
                                 temp = temp + t2.Name + "\r\n";
@@ -580,6 +581,48 @@ namespace Game04
             return s;
         }
 
+        public string PickOb(string obname)
+        {
+            Thing t;
+            string s = "";
+            t = ObHere(obname);
+            bool lp_present = false;
+            Lockpick lp = null;
+            ThingList playerThings = _player.Things;
+            if (t == null)
+            {
+                s = $"There is no {obname} here!";
+            }
+            else
+            {
+                LockboxContThing targetbox = t as LockboxContThing;
+                if (targetbox == null)
+                {
+                    s = $"{t.Name} is not a lockbox!";
+                }
+
+                foreach (Thing thing in playerThings)
+                {
+                    if(thing.Name == "lockpick")
+                    {
+                        lp_present = true;
+                        lp = (Lockpick)thing;
+                    }
+                    
+                }
+
+                if (lp_present == false)
+                {
+                    s = $"You have no lockpick, you cannot pick a box";
+                }
+                else if (lp_present == true)
+                {
+                    s = AttemptPick(lp, targetbox);
+                }
+            }
+            return s;
+        }
+
         public string PullOb(string obname)
         {
             Thing t;
@@ -668,6 +711,44 @@ namespace Game04
         public string Look()
         {
             return "You are in " + _player.Location.Describe();
+        }
+
+        public string AttemptPick(Lockpick lp, LockboxContThing lb)
+        {
+            string s = "";
+            int lphp = lp.lphp;
+            int lockDiff = lb.PickDiff * 15;
+            int locklvl = lb.LockLvl * 2;
+
+            int lockDifficulty = RandomInt(1, lockDiff) + locklvl;
+            int rndmRoll = RandomInt(1, 50) + lphp;
+
+            if (rndmRoll > lockDifficulty)
+            {
+                lb.Unlock();
+                s = $"The {lb.Name} makes an audible click!";
+            }
+            else if (rndmRoll - lockDifficulty > 25)
+            {
+                lp.lphp -= 2;
+
+                s = $"You feel your {lp.Name} weaken!";
+            }
+            else
+            {
+                s = $"You work at a {lb.Name} but make no progress on the lock";
+            }
+
+            return s;
+        }
+
+        public int RandomInt(int min, int max)
+        {
+            int rn = 0;
+            Random rndm = new Random();
+            rn = rndm.Next(min, max);
+
+            return rn;
         }
     }
 }

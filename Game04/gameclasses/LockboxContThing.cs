@@ -13,6 +13,7 @@ namespace Game04.gameclasses
         private bool _pickable;
         private int _pickDiff;
         private int _lockLvl;
+        
        
 
         public LockboxContThing(string aName, string aDescription, bool isTakeable, bool isMoveable, bool IsOpenable, bool open, ThingList tl, bool aLocked, bool aPickable, int aPickDiff, int aLockLvl) : 

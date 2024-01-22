@@ -51,6 +51,7 @@ namespace Game04
             vocab.Add("look", WT.VERB);
             vocab.Add("open", WT.VERB);
             vocab.Add("close", WT.VERB);
+            vocab.Add("pick", WT.VERB);
             vocab.Add("pull", WT.VERB);
             vocab.Add("push", WT.VERB);
             vocab.Add("rub", WT.VERB);
@@ -175,6 +176,9 @@ namespace Game04
                         break;
                     case "close":
                         s = CloseOb(wt2.Word);
+                        break;
+                    case "pick":
+                        s = PickOb(wt2.Word);
                         break;
                     case "pull":
                         s = PullOb(wt2.Word);
