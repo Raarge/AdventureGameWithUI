@@ -45,6 +45,7 @@ namespace Game04
             vocab.Add("sign", WT.NOUN);
             vocab.Add("slot", WT.NOUN);
             vocab.Add("squirrel", WT.NOUN);
+            vocab.Add("get", WT.VERB);
             vocab.Add("take", WT.VERB);
             vocab.Add("drop", WT.VERB);
             vocab.Add("put", WT.VERB);
@@ -165,6 +166,7 @@ namespace Game04
             {     ////****To Do ***** add appraise for gems
                 switch (wt.Word)
                 {
+                    case "get":
                     case "take":
                         s = TakeOb(wt2.Word);
                         break;

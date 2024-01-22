@@ -721,14 +721,14 @@ namespace Game04
             int locklvl = lb.LockLvl * 2;
 
             int lockDifficulty = RandomInt(1, lockDiff) + locklvl;
-            int rndmRoll = RandomInt(1, 50) + lphp;
+            int rndmRoll = RandomInt(1, 25) + lphp;
 
             if (rndmRoll > lockDifficulty)
             {
                 lb.Unlock();
                 s = $"The {lb.Name} makes an audible click!";
             }
-            else if (rndmRoll - lockDifficulty > 25)
+            else if ((lockDifficulty - rndmRoll) > 25)
             {
                 lp.lphp -= 2;
 
