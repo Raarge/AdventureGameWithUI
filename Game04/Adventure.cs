@@ -615,9 +615,13 @@ namespace Game04
                 {
                     s = $"You have no lockpick, you cannot pick a box";
                 }
-                else if (lp_present == true)
+                else if (lp_present == true && lp.WorksOnLocks == true)
                 {
                     s = AttemptPick(lp, targetbox);
+                }
+                else
+                {
+                    s = $"Your {lp.Name} is broken!";
                 }
             }
             return s;
@@ -731,8 +735,17 @@ namespace Game04
             else if ((lockDifficulty - rndmRoll) > 25)
             {
                 lp.lphp -= 2;
+                lp.CheckLPHealth(lp);
 
-                s = $"You feel your {lp.Name} weaken!";
+                if(lp.WorksOnLocks == false)
+                {
+                    s = $"Your {lp.Name} is broken!";
+                }
+                else
+                {
+                    s = $"You feel your {lp.Name} weaken!";
+                }
+                
             }
             else
             {

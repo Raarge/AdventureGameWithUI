@@ -13,7 +13,7 @@ namespace Game04.gameclasses
         private LPQuality _lpQ;
         private int _grade;
         private int _durab;
-        public int lphp;  //TO DO ** add methods to determing hp of the pick for breaking
+        public int lphp;  
 
         public Lockpick(string aName, string aDescription, bool aCantake, bool isMoveable, bool aWorkOnLocks, LPQuality aLpq, int aGrade, int aDurab) :
             base(aName, aDescription, aCantake, isMoveable)
@@ -36,6 +36,15 @@ namespace Game04.gameclasses
             _worksOnLocks = false;
         }
 
+
+        public void CheckLPHealth(Lockpick lp)
+        {
+            if(lp.lphp <= 0)
+            {
+                CanNotWorkOnLocks();
+
+            }
+        }
         public bool WorksOnLocks
         {
             get => _worksOnLocks;
