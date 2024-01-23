@@ -721,18 +721,19 @@ namespace Game04
         {
             string s = "";
             int lphp = lp.lphp;
-            int lockDiff = lb.PickDiff * 15;
+            int lockDiff = lb.PickDiff * 6;
             int locklvl = lb.LockLvl * 2;
 
-            int lockDifficulty = RandomInt(1, lockDiff) + locklvl;
-            int rndmRoll = RandomInt(1, 25) + lphp;
+            int rndmRoll = RandomInt(1, 30) + lphp;
+            int lockDifficulty = RandomInt(1, lockDiff) + (locklvl * 20);
+            
 
             if (rndmRoll > lockDifficulty)
             {
                 lb.Unlock();
                 s = $"The {lb.Name} makes an audible click!";
             }
-            else if ((lockDifficulty - rndmRoll) > 25)
+            else if ((lockDifficulty - rndmRoll) > 8)
             {
                 lp.lphp -= 2;
                 lp.CheckLPHealth(lp);

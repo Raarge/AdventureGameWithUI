@@ -64,6 +64,8 @@
     <Compile Include="gameclasses\Lockpick.cs" />
     <Compile Include="gameclasses\MagicTreasure.cs" />
     <Compile Include="gameclasses\RoomList.cs" />
+    <Compile Include="gameclasses\Skill.cs" />
+    <Compile Include="gameclasses\SkillList.cs" />
     <Compile Include="gameclasses\Thing.cs" />
     <Compile Include="gameclasses\ThingHolder.cs" />
     <Compile Include="gameclasses\ThingList.cs" />
