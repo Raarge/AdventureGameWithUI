@@ -14,15 +14,16 @@ namespace Game04
     {
         private RoomList _map;
         private Actor _player;
+        private SkillList _skillList;
 
         public Adventure()
         {
             InitVocab();
             _map = InitMap(_map);
-           
 
-            _player = new Actor("You", "The Player", _map.RoomAt(Rm.TrollRoom), new ThingList());
-
+            _skillList = InitSkills(_skillList);
+            _player = new Actor("You", "The Player", _map.RoomAt(Rm.TrollRoom), new ThingList(), _skillList);
+            
         }
 
         //// --- Player

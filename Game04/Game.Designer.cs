@@ -58,6 +58,7 @@
             this.exitsTB = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.skillBTN = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -315,11 +316,22 @@
             this.label3.TabIndex = 19;
             this.label3.Text = "Exits";
             // 
+            // skillBTN
+            // 
+            this.skillBTN.Location = new System.Drawing.Point(360, 476);
+            this.skillBTN.Name = "skillBTN";
+            this.skillBTN.Size = new System.Drawing.Size(75, 23);
+            this.skillBTN.TabIndex = 20;
+            this.skillBTN.Text = "Skills";
+            this.skillBTN.UseVisualStyleBackColor = true;
+            this.skillBTN.Click += new System.EventHandler(this.skillBTN_Click);
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 516);
+            this.Controls.Add(this.skillBTN);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.exitsTB);
@@ -381,6 +393,7 @@
         private System.Windows.Forms.TextBox exitsTB;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button skillBTN;
     }
 }
 

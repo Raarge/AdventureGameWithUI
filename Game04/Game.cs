@@ -69,6 +69,11 @@ namespace Game04
             WrLn("You have " + adv.Player.Things.Describe());
         }
 
+        private void ShowSkills()
+        {
+            WrLn("\r\nYou have the following skills: \r\n" + adv.Player.SkillList.Describe());
+        }
+
         private void lookBtn_Click(object sender, EventArgs e)
         {
             outputTB.Text = $"You are in the {adv.Player.Location.Name}.\r\n";
@@ -312,6 +317,11 @@ namespace Game04
         {
             MovePlayer(Dir.DOWN);
             cmdTB.Focus();
+        }
+
+        private void skillBTN_Click(object sender, EventArgs e)
+        {
+            ShowSkills();
         }
     }
 }

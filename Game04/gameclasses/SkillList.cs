@@ -8,6 +8,7 @@ namespace Game04.gameclasses
 {
     public class SkillList : List<Skill>
     {
+        
         public string Describe()
         {
             string s = "";
@@ -26,12 +27,6 @@ namespace Game04.gameclasses
             return s;
         }
 
-        public Skill AddASkill(string sk)
-        {
-            Skill lockpicking = null;
-            // learn skill and return initially set to null
-
-            return lockpicking;
-        }
+        
     }
 }

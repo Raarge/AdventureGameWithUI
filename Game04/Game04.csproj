@@ -51,6 +51,7 @@
     <Compile Include="Adventure.map.cs" />
     <Compile Include="Adventure.parser.cs" />
     <Compile Include="Adventure.puzzles.cs" />
+    <Compile Include="Adventure.skills.cs" />
     <Compile Include="Game.cs">
       <SubType>Form</SubType>
     </Compile>
