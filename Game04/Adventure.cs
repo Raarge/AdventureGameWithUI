@@ -724,18 +724,33 @@ namespace Game04
             int lphp = lp.lphp;
             int lockDiff = lb.PickDiff * 6;
             int locklvl = lb.LockLvl * 2;
+            Skill sk = null;
+            SkillList sl = _player.SkillList;
 
-            int rndmRoll = RandomInt(1, 30) + lphp;
+            foreach(Skill skl in sl)
+            {
+                if(skl.Name == "Lockpicking")
+                {
+                    sk = skl;
+                    break;
+                }
+            }
+
+            
+
+            int rndmRoll = RandomInt(1, 30) + lphp + Convert.ToInt32(Math.Round(sk.Level));
             int lockDifficulty = RandomInt(1, lockDiff) + (locklvl * 20);
             
 
             if (rndmRoll > lockDifficulty)
             {
+                LockpickingTest(lockDifficulty);
                 lb.Unlock();
                 s = $"The {lb.Name} makes an audible click!";
             }
             else if ((lockDifficulty - rndmRoll) > 8)
             {
+                LockpickingTest(lockDifficulty);
                 lp.lphp -= 2;
                 lp.CheckLPHealth(lp);
 
@@ -751,6 +766,7 @@ namespace Game04
             }
             else
             {
+                LockpickingTest(lockDifficulty);
                 s = $"You work at a {lb.Name} but make no progress on the lock";
             }
 
@@ -764,6 +780,43 @@ namespace Game04
             rn = rndm.Next(min, max);
 
             return rn;
+        }
+
+        public string AttemptAppraisal(string item)
+        {
+            string s = "";
+            bool flag = false;
+            ThingList tl = _player.Things;
+
+            foreach(Thing t in tl)
+            {
+                if(t.Name == item)
+                {
+                    flag = true;
+                }
+            }
+
+            if (flag == true)
+            {
+                if (item != "lockpick")
+                {
+                    s = $"You cannot appraise an {item}.";
+                }
+                else
+                {
+                    // appraise & appraisetest
+                }
+            }
+            else
+            {
+                s = $"You do not have a {item}.";
+            }
+            
+
+
+
+
+            return s;
         }
     }
 }

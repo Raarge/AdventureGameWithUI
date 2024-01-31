@@ -45,6 +45,7 @@ namespace Game04
             vocab.Add("sign", WT.NOUN);
             vocab.Add("slot", WT.NOUN);
             vocab.Add("squirrel", WT.NOUN);
+            vocab.Add("appraise", WT.VERB);
             vocab.Add("get", WT.VERB);
             vocab.Add("take", WT.VERB);
             vocab.Add("drop", WT.VERB);
@@ -190,6 +191,9 @@ namespace Game04
                         break;
                     case "rub":
                         s = RubOb(wt2.Word);
+                        break;
+                    case "appraise":
+                        s = AttemptAppraisal(wt2.Word);
                         break;
                     default:
                         s = $"I don't know how to {wt.Word} a {wt2.Word}!";
