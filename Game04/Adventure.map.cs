@@ -68,7 +68,7 @@ namespace Game04
             _map[Rm.Dungeon].AddThing(new MagicTreasure("orb", "a glowing orb that pulses", false, true, true, true));
             _map[Rm.RootCellar].AddThing(new Lockpick("lockpick", "the well worn lockpick is battered and wavy", true, true, true, LPQuality.Bent, 3, 6));
             _map[Rm.SleepingChamber].AddThing(new GemTreasure("quartz", "a very tiny piece of quartz", true, true, true, GemSz.Tiny, GemType.Quartz));
-            _map[Rm.SleepingChamber].AddThing(new LockboxContThing("lockbox", "a beat up lockbox", true, true, true, false, lbList, true, true, 2, 1));
+            _map[Rm.SleepingChamber].AddThing(new LockboxContThing("lockbox", "a beat up lockbox", true, true, true, false, lbList, true, true, 2, 1, false));
 
             
             return _map;

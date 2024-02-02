@@ -212,10 +212,33 @@ namespace Game04
                     {
                         tl = ct.Things;
                         t = ct.Things.GetOb(obname);
+
+                        CheckForLockboxEmpty(ct);
                     }
                 }
             }
             return new KeyValuePair<Thing, ThingList>(t, tl);
+        }
+
+        private void CheckForLockboxEmpty(ContainerThing ct)
+        {
+            if (ct is LockboxContThing)
+            {
+                int numItems = 0;
+
+                foreach (Thing thing in ct.Things)
+                {
+                    if (thing != null)
+                    {
+                        numItems++;
+                    }
+                }
+
+                if (numItems == 0 || numItems == 1)
+                {
+                    ((LockboxContThing)ct).Empty();
+                }
+            }
         }
 
         private KeyValuePair<MagicTreasure, ThingList> MagObInContainerHere(string obname)
@@ -517,6 +540,13 @@ namespace Game04
             {
                 TransferOb(t, _player.Things, ((ContainerThing)container).Things);
                 s = $"You put the {obname} into the {containername}.";
+                if (container is LockboxContThing)
+                {
+                    if (((LockboxContThing)container).IsEmpty == true)
+                    {
+                        ((LockboxContThing)container).NotEmpty();
+                    }
+                }
             }
             return s;
         }

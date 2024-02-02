@@ -13,16 +13,19 @@ namespace Game04.gameclasses
         private bool _pickable;
         private int _pickDiff;
         private int _lockLvl;
+        private bool _empty;
         
        
 
-        public LockboxContThing(string aName, string aDescription, bool isTakeable, bool isMoveable, bool IsOpenable, bool open, ThingList tl, bool aLocked, bool aPickable, int aPickDiff, int aLockLvl) : 
+        public LockboxContThing(string aName, string aDescription, bool isTakeable, bool isMoveable, bool IsOpenable, bool open, ThingList tl, bool aLocked, bool aPickable, 
+            int aPickDiff, int aLockLvl, bool aEmpty) : 
             base(aName, aDescription, isTakeable, isMoveable, IsOpenable, open ,tl) 
         {
             _locked = aLocked;
             _pickable = aPickable;
             _pickDiff = aPickDiff;
             _lockLvl = aLockLvl;
+            _empty = aEmpty;
             
         }
 
@@ -44,6 +47,16 @@ namespace Game04.gameclasses
         public void NotPickable()
         {
             _pickable = false;
+        }
+
+        public void Empty()
+        {
+            _empty = true;
+        }
+
+        public void NotEmpty()
+        {
+            _empty = false;
         }
 
         public bool IsLocked
@@ -70,6 +83,11 @@ namespace Game04.gameclasses
             set => _lockLvl = value;
         }
 
+        public bool IsEmpty
+        {
+            get => _empty;
+            set => _empty = value;
+        }
 
     }
 }
