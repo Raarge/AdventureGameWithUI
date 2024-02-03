@@ -241,6 +241,81 @@ namespace Game04
             }
         }
 
+        private string TryDismantle(string lbx)
+        {
+            string s = "";
+            LockboxContThing lbct = CheckForLockbox(lbx);
+            if (lbct == null)
+            {
+                s = $"There is no {lbx} in your inventory.";
+            }
+            if (lbct.IsEmpty != true)
+            {
+                s = $"You cannot dismantle the {lbx}, it is not empty.";
+            }
+            else
+            {
+                s = Dismantle(lbct);
+            }
+
+            return s;
+        }
+
+        private string Dismantle(LockboxContThing lbct)
+        {
+            string s = "";
+            int RndMessageNum = 0;
+            Random rnd = new Random();
+            RndMessageNum = rnd.Next(1, 8);
+
+            switch (RndMessageNum)
+            {
+                case 1:
+                case 5:
+                    s = $"You struggle briefly but manage to dismantle the {lbct.Name}.";
+                    break;
+                case 2:
+                case 6:
+                    s = $"You only struggle a bit dismantling the {lbct.Name}.";
+                    break;
+                case 3:
+                case 7:
+                    s = $"Smoothly you dismantle the {lbct.Name} into many pieces.";
+                    break;
+                case 4:
+                case 8:
+                    s = $"Deftly you dismantle the {lbct.Name} into its base parts.";
+                    break;
+                default:
+                    s = "Error Not Handled Dismantle()";
+                    break;
+            }
+            MechLoreTest("Dismantle");
+            DestroyLockbox(lbct);
+            return s;
+        }
+
+        private void DestroyLockbox(LockboxContThing lbct)
+        {
+            Thing t = (Thing)lbct;
+            _player.Things.Remove(t);
+        }
+
+        private LockboxContThing CheckForLockbox(string lbx)
+        {
+            LockboxContThing lbct = null;
+
+            foreach(Thing t in _player.Things)
+            {
+                if (t is LockboxContThing && t.Name == lbx)
+                {
+                    lbct = (LockboxContThing)t;
+                    break;
+                }
+            }
+            return lbct;
+        }
+
         private KeyValuePair<MagicTreasure, ThingList> MagObInContainerHere(string obname)
         {
             ContainerThing ct = null;
@@ -817,12 +892,14 @@ namespace Game04
             string s = "";
             bool flag = false;
             ThingList tl = _player.Things;
+            Thing obj = null;
 
             foreach(Thing t in tl)
             {
                 if(t.Name == item)
                 {
                     flag = true;
+                    obj = t;
                 }
             }
 
@@ -834,6 +911,7 @@ namespace Game04
                 }
                 else
                 {
+                    s = LockPickAppraise(obj);
                     // appraise & appraisetest
                 }
             }
@@ -844,10 +922,10 @@ namespace Game04
             
 
 
-
-
             return s;
         }
+
+       
     }
 }
 

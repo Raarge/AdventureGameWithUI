@@ -49,6 +49,7 @@ namespace Game04
             vocab.Add("get", WT.VERB);
             vocab.Add("take", WT.VERB);
             vocab.Add("drop", WT.VERB);
+            vocab.Add("dismantle", WT.VERB);
             vocab.Add("put", WT.VERB);
             vocab.Add("look", WT.VERB);
             vocab.Add("open", WT.VERB);
@@ -170,6 +171,9 @@ namespace Game04
                     case "get":
                     case "take":
                         s = TakeOb(wt2.Word);
+                        break;
+                    case "dismantle":
+                        s = TryDismantle(wt2.Word);
                         break;
                     case "drop":
                         s = DropOb(wt2.Word);
